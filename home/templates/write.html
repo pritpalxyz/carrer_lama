@@ -1,0 +1,228 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+
+    <div class="page_banner banner post-banner">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <div class="banner-heading">Write your Review</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <main id="maincontent">
+                    <section class="resume">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="page-heading">
+                                                        <img src="/mediadump/{{compinsta.comapny_logo}}" class="image-responsive"/>
+                                                         <h2>Review for {{compinsta.company_name}}</h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="panel-body">
+
+
+
+                                    <form action="{% url 'home:submit_review' %}" method="post">
+                                        {% csrf_token %}
+                                        <div class="form-group">
+
+                                            <input type="hidden" name="compid" value="{{compinsta.id}}"/>
+                                            <label><b>Enter Name or Title:</b></label>
+                                                <input type="text" name="name" class="form-control" placeholder="Enter title.." required/>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label><b>Designation:</b></label>
+                                            <select name="designation" class="form-control">
+                                                <option>-- Select -- </option>
+
+                                                {% for desi in alldesignations %}
+                                                <option value="{{desi.id}}">{{desi.designation_name}}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                        <hr style="width:100%"/>
+
+
+                                          <div class="form-group">
+                                            <label><b>Skill development/learning:</b></label>
+                                            <select name="skill_develop" class="form-control">
+
+                                                <option>-- Select -- </option>
+
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                            </select>
+                                        </div>
+
+                                          <div class="form-group">
+                                            <label><b>Work-Life balance:</b></label>
+                                            <select name="work_life" class="form-control">
+
+                                                <option>-- Select -- </option>
+
+                                               <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                            </select>
+                                        </div>
+
+                                          <div class="form-group">
+                                            <label><b>Compensation & Benefits:</b></label>
+                                            <select name="compensation" class="form-control">
+
+
+                                                <option>-- Select -- </option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                            </select>
+                                        </div>
+
+                                          <div class="form-group">
+                                            <label><b>Company culture:</b></label>
+                                            <select name="company_cul" class="form-control">
+
+                                                <option>-- Select -- </option>
+
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                            </select>
+                                        </div>
+
+                                          <div class="form-group">
+                                            <label><b>Job Security:</b></label>
+                                            <select name="job_security" class="form-control">
+
+                                                <option>-- Select -- </option>
+
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                            </select>
+                                        </div>
+
+                                          <div class="form-group">
+                                            <label><b>Career growth & opportunities:</b></label>
+                                            <select name="career_growth" class="form-control">
+
+                                                <option>-- Select -- </option>
+
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                            </select>
+                                        </div>
+
+                                          <div class="form-group">
+                                            <label><b>Work Satisfaction:</b></label>
+                                            <select name="work_satis" class="form-control">
+                                                <option>-- Select -- </option>
+
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                            </select>
+                                        </div>
+
+                                        <hr style="width:100%"/>
+
+                                        <div class="form-group">
+                                                <label><b>Working Days</b></label>
+                                                <select name="working_days" class="form-control">
+
+
+                                                        <option>-- Select -- </option>
+                                                        <option value="Monday to Saturday">Monday to Saturday</option>
+                                                        <option value="Monday to Friday">Monday to Friday</option>
+                                                        <option value="Alternate Saturdays off">Alternate Saturdays off</option>
+                                                        <option value="Rotational shifts">Rotational shifts</option>
+                                                </select>
+
+                                        </div>
+                                        <div class="form-group">
+                                                <label><b>Job Travel</b></label>
+                                               <textarea class="form-control" name="job_travel" placeholder="Job Travel comments"></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label><b>Working Time</b></label>
+                                             <select name="working_time" class="form-control">
+
+
+                                                        <option>-- Select -- </option>
+                                                        <option value="Normal">Normal</option>
+                                                       <option value="Strict">Strict</option>
+                                                        <option value="Flexible">Flexible</option>
+
+                                                </select>
+                                        </div>
+                                        <div class="form-group">
+                                                    <div class="row">
+                                                            <div class="col-md-6">
+                                                                <label><b>Job Start time</b></label>
+                                                                    <select class="form-control" name="start_time">
+                                                                        <option> -- Select -- </option>
+                                                                        {% for time in timedict %}
+                                                                        <option value="{{time}}">{{time}}</option>
+                                                                                {% endfor  %}
+                                                                    </select>
+
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <label><b>Job end time</b></label>
+                                                                    <select class="form-control" name="end_time">
+                                                                        <option> -- Select -- </option>
+                                                                        {% for to in timedict %}
+                                                                        <option value="{{to}}">{{to}}</option>
+                                                                                {% endfor  %}
+                                                                    </select>
+
+                                                            </div>
+
+                                                    </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label><b>Likes</b></label>
+                                            <textarea class="form-control" name="likes" placeholder="Like about company"></textarea>
+                                        </div>
+                                         <div class="form-group">
+                                            <label><b>Dis-Likes</b></label>
+                                            <textarea class="form-control" name="dislike" placeholder="Dislikes about company"></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="submit" name="submit" class="btn btn-primary" value="Submit Review"/>
+                                        </div>
+
+                                        </form>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </main>
+{% endblock content %}

@@ -1,0 +1,292 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+
+  <div class="site-banner">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="banner-content">
+                            <h1>Search between more then <br /> 50,000  people experiences .</h1>
+                            <p>Ace your next Interview with advice from real Interview candidates!
+                            </p>
+                        </div>
+                        <div class="job-search">
+                            <form action="{% url 'home:allcompanies' %}" method="get">
+                                {% csrf_token %}
+                                <div class="form-group col-md-12 padding-left b-r radius">
+                                    <input type="text" class="form-control" name="q" placeholder="Company name.." />
+                                    <div class="search_icon"><span class="ti-briefcase"></span></div>
+                                </div>
+
+                                <div class="btn-search">
+                                      <input type="submit" class="btn btn-default" value="Search Results"/>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+  </div>
+
+
+
+
+
+        <main id="maincontent">
+                <div class="container skill">
+                    <div class="row">
+                        <div class="col-md-9">
+                                <div class="page-heading">
+                                    <h2>Know In-depth information about the companies you want to work for.</h2>
+                                    <!--<p>In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo.-->
+                                        <!--Nullam dictum felis eu pede mollis pretium. Integer tincidunt. -->
+                                        <!--Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend -->
+                                        <!--tellus. Aenean leo ligula, porttitor eu.</p>-->
+                                </div>
+                                <ul class="nav nav-tabs">
+
+                                    <li class="active"><a data-toggle="tab" href="#Industry">By Industry</a></li>
+                                    <li><a data-toggle="tab" href="#Location"> By Location</a></li>
+
+                                </ul>
+                                <div class="tab-content">
+
+                                        <div id="Industry" class="tab-pane fade in active">
+                                            <div class="col-md-12 padding-left">
+                                                <ul class="unstyled">
+                                                       {% for indus in allindustries %}
+                                                            <a href="{% url 'home:category_wise' indus.id %}" class="btn btn-info">{{indus.category_name}}</a>
+                                                        {% endfor  %}
+
+                                                </ul>
+                                            </div>
+
+
+                                        </div>
+                                        <div id="Location" class="tab-pane fade">
+                                            <div class="col-md-12 padding-left">
+                                                <ul class="unstyled">
+                                                        {% for locs in alllocations %}
+                                                            <a href="{% url 'home:location_wise' locs.id %}" class="btn btn-info">{{locs.state_name}}</a>
+                                                        {% endfor  %}
+
+                                                </ul>
+                                            </div>
+
+
+                                        </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="Resume">
+
+                                    <div class="bottom">
+                                      <h1>Newsletter Subscription</h1>
+
+                                      <div class="form-group">
+                                          <input type="text" class="form-control" placeholder="Email address..." />
+                                      </div>
+                                      <p class="text-right"><a href="#">Subscribe Now</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            <section class="featured">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="page-heading">
+                                        <h2>Featured Companies</h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="table-bg">
+                                        <table class="table">
+                                            <tbody>
+
+                                                {% for comp in allhomecompanies %}
+
+                                                <tr>
+                                                    <td><div class="tab-image">
+                                                        <img src="/mediadump/{{comp.comapny_logo}}" alt="" class="img-responsive" style="height:80px;width:130px;" /></div>
+                                                        <h1>{{comp.company_name}}</h1>
+                                                    </td>
+                                                    <td class="work-time">{{comp.category}}</td>
+                                                    <td><span class="ti-location-pin"></span> {{comp.state}}</td>
+                                                    <td><a href="{% url 'home:company' comp.id %}" class="table-btn-default">View </a></td>
+                                                </tr>
+
+                                            {% endfor  %}
+
+
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 text-right">
+                                <ul class="pagination">
+                                        <li><a href="{% url 'home:allcompanies' %}">view All</a></li>
+                                </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="our_site">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-8 col-md-offset-4">
+                                    <div class="page-title">
+                                        <h1>Start Your Career Today! <br />Our Site Stats Here <b class="with text-right">With Us</b></h1>
+                                        <!--<p>Phasellus viverra nulla ut metus varius laoreet.-->
+                                            <!--Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel <br />-->
+                                            <!--augue. Curabitur ullamcorper tellus eget condimentum ultricies nisi.</p>-->
+                                    </div>
+                                    <div class="col-md-4 col-sm-4 padding-left">
+                                        <div class="counter-icon"><span class="ti-briefcase"></span></div>
+                                        <div class="overflow">
+                                           <div class="fact-box">
+                                                <p>Reviews</p>
+                                                <h3 class="counter_number">{{allreviewsCount}}</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-4 padding-left">
+                                        <div class="counter-icon"><span class="ti-world"></span></div>
+                                        <div class="overflow">
+                                           <div class="fact-box">
+                                                <p>Company</p>
+                                                <h3 class="counter_number">{{allcompaniesCount}}</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-4 padding-left">
+                                        <div class="counter-icon"><span class="ti-user"></span></div>
+                                        <div class="overflow">
+                                           <div class="fact-box">
+                                                <p>Member</p>
+                                                <h3 class="counter_number">0</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="employe">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-8 col-md-offset-2 text-center">
+                                    <div class="page-heading">
+                                        <h2>Top Companies</h2>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+
+                                {% for company in allhomecompanies %}
+                                <div class="col-md-2">
+                                    <div class="client">
+                                        <a href="#"><img src="/mediadump/{{company.comapny_logo}}" alt="" class="img-responsive"  /></a>
+                                    </div>
+                                </div>
+
+
+                                {% endfor %}
+                            </div>
+
+                        </div>
+                    </section>
+                    <section class="success_story">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-4 text-right">
+                                    <div class="page-heading2">
+                                        <h1>Carrer <span>lama</span></h1>
+                                        <strong>success stories</strong>
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="testi-slider">
+                                        <ul class="slides list-inline">
+
+
+                                            {% for rev in latestReviews %}
+                                            <li>
+                                                <div class="testi-box clearfix text-center">
+                                                    <img src="/mediadump/{{rev.company.comapny_logo}}" alt="" class="img-responsive">
+                                                    <div class="content">
+                                                        <p>
+                                                            {{rev.likes}}
+                                                        </p>
+                                                        <div class="content-hr"></div>
+                                                        <h4>{{rev.name_or_title}}</h4>
+                                                        <span>{{rev.designation}}</span>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            {% endfor %}
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+
+                    <!--<section class="blog">-->
+                        <!--<div class="container">-->
+                            <!--<div class="row">-->
+                                <!--<div class="col-md-8 col-md-offset-2 text-center">-->
+                                    <!--<div class="page-heading">-->
+                                        <!--<h2>Latest News form <span>Carrerlama</span></h2>-->
+                                        <!--&lt;!&ndash;<p>In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam&ndash;&gt;-->
+                                            <!--&lt;!&ndash;dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus.&ndash;&gt;-->
+                                            <!--&lt;!&ndash;Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.</p>&ndash;&gt;-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--<div class="row">-->
+                                <!--<div class="col-md-6">-->
+                                    <!--<div class="block1">-->
+                                        <!--<a href="#"><img src="{% static 'assets/images/home/blog1.jpg' %}" alt="" class="img-responsive"></a>-->
+                                        <!--<div class="block1_desc">-->
+                                            <!--<div class="col-md-2 col-sm-2 padding-left text-right">-->
+                                                <!--<h3>April 25, <span>2017</span></h3>-->
+                                            <!--</div>-->
+                                            <!--<div class="col-md-10 col-sm-10">-->
+                                                <!--<p>Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies-->
+                                                    <!--tellus eget condimentum nisi.</p>-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                                <!--<div class="col-md-6">-->
+                                    <!--<div class="block1">-->
+                                        <!--<a href="#"><img src="{% static 'assets/images/home/blog2.jpg' %}" alt="" class="img-responsive"></a>-->
+                                        <!--<div class="block1_desc">-->
+                                            <!--<div class="col-md-2 col-sm-2 padding-left text-right">-->
+                                                <!--<h3>March 13, <span>2017</span></h3>-->
+                                            <!--</div>-->
+                                            <!--<div class="col-md-10 col-sm-10">-->
+                                                <!--<p>Etiam ultricies nisi vel augue. Curabitur ullamcorper-->
+                                                    <!--ultricies tellus eget condimentum nisi.</p>-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</section>-->
+                </main>
+
+{% endblock content %}

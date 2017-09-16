@@ -1,0 +1,157 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load extra_range %}
+
+{% block content %}
+
+
+
+
+                <div class="page_banner banner listing-banner">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <div class="banner-heading">Company Listing</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <main id="maincontent">
+                    <section class="resume">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="job-search">
+                                         <form action="{% url 'home:allcompanies' %}" method="get">
+                                            {% csrf_token %}
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" name="q" placeholder="Company name / Keywords">
+                                                        <div class="search_icon"><span class="ti-briefcase"></span></div>
+                                                </div>
+                                            <input type="submit" class="btn btn-default" value="Search Results"/>
+                                        </form>
+                                    </div>
+                                    <div class="job_title">Categories</div>
+                                    <div class="borderfull-width"></div>
+                                    <div class="clearfix"></div>
+                                    <div class="page-heading">
+
+
+
+                                          <div class="category">
+
+                                       <div class="col-md-11 p-l p-r">
+                                           <li>  <a href="{% url 'home:allcompanies' %}"> All</a></li>
+                                        </div>
+                                    </div>
+                                        {% for indus in allindustries %}
+
+                                        <div class="category">
+
+                                       <div class="col-md-11 p-l p-r">
+                                           <li>  <a href="{% url 'home:category_wise' indus.id %}"> {{indus.category_name}}</a></li>
+                                        </div>
+                                    </div>
+                                        {% endfor %}
+
+
+                                    </div>
+                                    <div class="job_title">Location</div>
+                                    <div class="borderfull-width"></div>
+                                    <div class="page-heading">
+
+
+
+
+                                        {% for loc in alllocations %}
+
+                                        <div class="category">
+
+                                        <div class="col-md-11 p-l p-r">
+                                           <li>  <a href="{% url 'home:location_wise' loc.id %}"> {{loc}}</a></li>
+                                        </div>
+                                    </div>
+                                        {% endfor %}
+
+
+
+                                    </div>
+
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="col-md-7 col-sm-7 p-l">
+                                        <div class="page-heading">
+                                            <p>Showing  {{ allhomecompanies.number }} - {{ allhomecompanies.paginator.num_pages }}
+                                            of {{allcompaniesCount}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5 col-sm-5 filter p-r text-right">
+
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <div class="page_listing">
+
+
+
+
+                                        {% for comp in allhomecompanies %}
+                                        <div class="sorting_content">
+                                           <div class="tab-image"><img src="/mediadump/{{comp.comapny_logo}}" alt="" class="img-responsive" style="width:150px"></div>
+                                            <div class="overflow">
+                                               <div class="text-shorting">
+                                                   <h1 class="col-md-6 col-sm-7">{{comp.company_name}}</p> </h1>
+                                                    <div class="work-time text-center col-md-2">{{comp.category}}</div>
+                                               </div>
+                                            <div class="bottom_text">
+                                                <div class="contact_details col-md-4 col-sm-4">
+                                                    <span><strong><i class="fa fa-globe"></i></strong> {{comp.weburl}}</span>
+                                                </div>
+                                                <div class="contact_details col-md-6 col-sm-6">
+                                                    <span><strong>Started date:</strong> {{comp.startedDate}}</span>
+                                                </div>
+                                                <div class="contact_details col-md-2 col-md-2">
+                                                            <span><strong>
+                                                                <a class="btn btn-primary" style="color:white;text-decoration:none" href="{% url 'home:company' comp.id %}">View</a>
+                                                            </strong></span>
+
+                                                </div>
+                                                <p class="col-md-12">
+                                                    {{comp.company_description|truncatechars:250 }}
+                                                </p>
+                                            </div>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+
+
+
+                                    </div>
+                                        <ul class="pagination pull-right">
+
+                                            {% if allhomecompanies.has_previous %}
+                                                <a href="?page={{ allhomecompanies.previous_page_number }}" class="btn btn-info">
+                                                 Back</a>
+                                              {% endif %}
+
+
+
+
+
+                                            <span class="current">
+                                                Page {{ allhomecompanies.number }} of {{ allhomecompanies.paginator.num_pages }}
+                                            </span>
+
+
+
+
+                                             {% if allhomecompanies.has_next %}
+                                                         <a href="?page={{ allhomecompanies.next_page_number }}" class="btn btn-info">Next</a>
+
+                                                {% endif %}
+                                        </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </main>
+{% endblock content %}

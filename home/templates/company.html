@@ -1,0 +1,247 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load extra_range %}
+
+{% block content %}
+      <div class="page_banner banner employer-banner">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <div class="banner-heading">Reviews</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <main id="maincontent">
+                    <section class="resume">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-8 clearfix">
+                                    <div class="col-md-3 p-l">
+                                        <div class="block">
+                                            <img src="/mediadump/{{comp.comapny_logo}}" alt="" class="img-responsive">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <div class="job_title">
+                                            {{comp.company_name}}
+                                        </div>
+                                        <a href="{{comp.facebook_link}}" target="blank" class="user-media"><i class="fa fa-facebook"></i></a>
+                                        <a href="{{comp.twitter_link}}" target="blank" class="user-media twitter"><i class="fa fa-twitter"></i></a>
+                                        <a href="{{comp.linkedin_link}}" target="blank" class="user-media linke"><i class="fa fa-linkedin"></i></a>
+                                        <a href="{{comp.google_plus_link}}" target="blank" class="user-media google"><span class="ti-google"></span></a>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="contact_details">
+                                        <span><i class="fa fa-map"></i> {{comp.state}}</span>
+                                        <span><i class="fa fa-tags"></i> {{comp.category}}</span>
+                                        <span><i class="fa fa-circle"></i>{{comp.startedDate}}</span>
+                                        <span><i class="fa fa-globe"></i><a href="{{comp.weburl}}" target="_blank">{{comp.weburl}}</a></span>
+                                        <span> <a href="{% url 'home:write_review' comp.id %}" class="btn btn-info" style="text-decoration:none">Write a Review for {{comp.company_name}}</a></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                            <br />
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="panel-body">
+                                        <div class="page-heading">
+                                            <h2>Company Overview</h2>
+                                            <p>
+
+                                                {{comp.company_description}}
+                                            </p>
+
+                                        </div>
+
+
+                                    </div>
+                                        <h2>{{comp.company_name}} Reviews</h2>
+                                       <div class="panel-body">
+                                        <div class="page-heading">
+                                            <!--REVIEW START-->
+
+                                            {% for review in allreviews %}
+
+                                            <div class="row">
+                                                        <div class="col-md-8">
+                                                            <h4><b style="color:blue">{{review.name_or_title}}</b></h4>
+
+
+                                                            {% for comra in "x"|ljust:'5' %}
+                                                           <img src="{% static 'assets/images/star-icon.png' %}" style="height:25px;width:25px"/>
+
+                                                                {% endfor %}
+                                                             - <span style="color:grey"> Software Developer</span>
+
+
+
+
+                                                        </div>
+                                                        <div class="col-md-4 text-right">
+                                                                    <span>{{review.dateposted}}</span>
+                                                        </div>
+                                            </div>
+                                            <br/>
+
+                                            <div class="row">
+                                                    <div class="col-md-5">
+                                                         Skill development/learning
+                                                    </div>
+                                                    <div class="col-md-7">
+
+
+                                                            {% for skillra in review.skill_development_learning %}
+                                                        <img src="{% static 'assets/images/star-icon.png' %}" style="height:25px;width:25px"/>
+                                                                {% endfor %}
+
+                                                    </div>
+                                            </div>
+                                            <div class="row">
+                                                    <div class="col-md-5">
+                                                        Work-Life balance
+                                                    </div>
+                                                    <div class="col-md-7">
+                                                           <img src="{% static 'assets/images/star-icon.png' %}" style="height:25px;width:25px"/>
+                                                            <img src="{% static 'assets/images/star-icon.png' %}" style="height:25px;width:25px"/>
+                                                            <img src="{% static 'assets/images/star-icon.png' %}" style="height:25px;width:25px"/>
+                                                            <img src="{% static 'assets/images/star-icon.png' %}" style="height:25px;width:25px"/>
+                                                          <img src="{% static 'assets/images/star-icon.png' %}" style="height:25px;width:25px"/>
+                                                    </div>
+                                            </div>
+                                             <div class="row">
+                                                    <div class="col-md-5">
+                                                        Compensation & Benefits
+                                                    </div>
+                                                    <div class="col-md-7">
+                                                           <img src="{% static 'assets/images/star-icon.png' %}" style="height:25px;width:25px"/>
+                                                            <img src="{% static 'assets/images/star-icon.png' %}" style="height:25px;width:25px"/>
+                                                          <img src="{% static 'assets/images/star-icon.png' %}" style="height:25px;width:25px"/>
+                                                    </div>
+                                            </div>
+                                             <div class="row">
+                                                    <div class="col-md-5">
+                                                        Company culture
+                                                    </div>
+                                                    <div class="col-md-7">
+                                                           <img src="{% static 'assets/images/star-icon.png' %}" style="height:25px;width:25px"/>
+                                                            <img src="{% static 'assets/images/star-icon.png' %}" style="height:25px;width:25px"/>
+                                                            <img src="{% static 'assets/images/star-icon.png' %}" style="height:25px;width:25px"/>
+                                                            <img src="{% static 'assets/images/star-icon.png' %}" style="height:25px;width:25px"/>
+                                                          <img src="{% static 'assets/images/star-icon.png' %}" style="height:25px;width:25px"/>
+                                                    </div>
+                                            </div>
+                                             <div class="row">
+                                                    <div class="col-md-5">
+                                                        Job Security
+                                                    </div>
+                                                    <div class="col-md-7">
+                                                           <img src="{% static 'assets/images/star-icon.png' %}" style="height:25px;width:25px"/>
+                                                            <img src="{% static 'assets/images/star-icon.png' %}" style="height:25px;width:25px"/>
+                                                            <img src="{% static 'assets/images/star-icon.png' %}" style="height:25px;width:25px"/>
+                                                            <img src="{% static 'assets/images/star-icon.png' %}" style="height:25px;width:25px"/>
+                                                          <img src="{% static 'assets/images/star-icon.png' %}" style="height:25px;width:25px"/>
+                                                    </div>
+                                            </div>
+                                             <div class="row">
+                                                    <div class="col-md-5">
+                                                       Career growth & opportunities
+                                                    </div>
+                                                    <div class="col-md-7">
+                                                           <img src="{% static 'assets/images/star-icon.png' %}" style="height:25px;width:25px"/>
+                                                            <img src="{% static 'assets/images/star-icon.png' %}" style="height:25px;width:25px"/>
+                                                            <img src="{% static 'assets/images/star-icon.png' %}" style="height:25px;width:25px"/>
+                                                            <img src="{% static 'assets/images/star-icon.png' %}" style="height:25px;width:25px"/>
+                                                          <img src="{% static 'assets/images/star-icon.png' %}" style="height:25px;width:25px"/>
+                                                    </div>
+                                            </div>
+                                             <div class="row">
+                                                    <div class="col-md-5">
+                                                        Work Satisfaction
+                                                    </div>
+                                                    <div class="col-md-7">
+                                                           <img src="{% static 'assets/images/star-icon.png' %}" style="height:25px;width:25px"/>
+                                                            <img src="{% static 'assets/images/star-icon.png' %}" style="height:25px;width:25px"/>
+                                                            <img src="{% static 'assets/images/star-icon.png' %}" style="height:25px;width:25px"/>
+                                                            <img src="{% static 'assets/images/star-icon.png' %}" style="height:25px;width:25px"/>
+                                                          <img src="{% static 'assets/images/star-icon.png' %}" style="height:25px;width:25px"/>
+                                                    </div>
+                                            </div>
+
+                                            <br/>
+                                                <!--MIDDLE MENU-->
+                                            <div class="row">
+                                                    <div class="col-md-4">
+                                                        <h5><b>Working Days</b></h5>
+                                                        {{review.working_days}}
+
+                                                    </div>
+                                                <div class="col-md-4">
+                                                    <h5><b>Job Travel</b></h5>
+                                                    {{review.job_travel}}
+
+                                                    </div>
+                                                <div class="col-md-4">
+                                                    <h5><b>Working Timings</b></h5>
+                                                  {{review.working_starttime}} to {{review.working_endtime}} ({{review.working_time}})
+
+                                                    </div>
+
+                                            </div>
+                                            <!--LIKE DISLIKE -->
+                                            <br/>
+                                            <div class="row">
+                                                    <div class="col-md-12">
+                                                            <h5><b>Likes</b></h5>
+                                                        <p>
+                                                            {{review.likes}}
+                                                        </p>
+                                                        <h5><b>Dislike</b></h5>
+                                                        <p>
+                                                             {{review.dislikes}}
+                                                        </p>
+                                                    </div>
+                                            </div>
+                                            <!-- REVIEW END -->
+
+                                            <hr style="width:100%"/>
+
+                                            {% endfor  %}
+
+
+
+                                       </div>
+
+
+                                    </div>
+
+
+                                </div>
+                                <div class="col-md-4">
+
+                                    <div class="panel-body">
+                                        <h3>Other Related Companies</h3>
+                                        <hr/>
+                                        {% for compo in allhomecompanies %}
+                                        <h5><b style="color:blue"><a href="{% url 'home:company' compo.id %}">{{compo.company_name}}</a></b></h5>
+                                                {{compo.state}}
+                                            <br/>
+
+                                        {% endfor %}
+
+
+
+                                    </div>
+                                    <div class="map">
+                                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d106051.59692771109!2d-117.91613952342153!3d33.83521175031485!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80dcd6f98055e867%3A0x1ab89ab9a2bb160!2sAnaheim%2C+CA%2C+USA!5e0!3m2!1sen!2sin!4v1493815696478" width="100%" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </main>
+
+{% endblock content %}
