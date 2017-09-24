@@ -1,0 +1,236 @@
+{% load staticfiles %}
+
+{% block header %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name=viewport content="width=device-width, initial-scale=1.0" />
+<meta http-equiv=content-type content="text/html;charset=UTF-8">
+<meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1">
+<title>Interview Questions | CareerLama</title>
+
+
+<link rel="stylesheet" href="{% static 'config/css/homepage.css' %}">
+<link rel="stylesheet" href="{% static 'config/css/font-awesome.min.css'%} ">
+<link rel="stylesheet" href="https://d2vodp2q794hrx.cloudfront.net/fonts/fonticons/style.css">
+
+	{% block extra_css %}
+
+	{% endblock extra_css %}
+
+
+<!-- end Mixpanel --><!-- Chrome, Firefox OS and Opera -->
+<meta name="theme-color" content="#10152E">
+
+<!-- Windows Phone -->
+<meta name="msapplication-navbutton-color" content="#10152E">
+<!-- iOS Safari -->
+<meta name="apple-mobile-web-app-status-bar-style" content="#10152E">
+
+</head>
+<body>
+<section class="main-menu wow fadeInDown">
+	<div class="left-section">
+		<a href="/"  taget="_blank">&nbsp;&nbsp;<b>Careerlama</b> </a>
+
+
+	</div>
+	<div class="right-section">
+
+		<a href="{% url 'dashboard:writeAReview' %}" class="highlight" >write a review </a>
+
+		{% if request.user.is_authenticated %}
+					<a style="margin-right:-0.5rem;" href="">
+				<img style="border-radius: 50%;" class="usr-thumbnail" src="/mediadump/{{request.session.userimage}}"/>
+			</a>
+
+
+
+			<a href="#" class="js-user-menu">Hi, {{request.user.first_name}}</a>
+			<div class="user-menu">
+				<div class="triangle"></div>
+				<a href="{% url 'dashboard:profile' %}"><i class="icon-user"></i> profile</a>
+				<a href="{% url 'dashboard:profile' %}"><i class="icon-user"></i> Profile Image </a>
+				<a href="{% url 'dashboard:logoutUser' %}"><i class="icon-logout"></i> logout</a>
+			</div>
+		{% else %}
+		{{request.user.username}}
+
+			<a href="{% url 'dashboard:login' %}">Login/Register</a>
+
+		{% endif %}
+
+
+
+			</div>
+</section>
+<header class="main-header-menu-wrap mobile">
+	<div class="main-header-menu">
+		<div class="menu js-mobile-menu"><i class="icon-menu-mobile"></i></div>
+		<div class="title"><a href="/">CareerLama</a></div>
+	</div>
+</header>
+
+<header class="main-menu-mobile">
+	<div>
+		<a href="" taget="_blank">Home</a>
+		<a href="" >Interviews</a>
+		<a href=""  >Companies</a>
+		<a href=""  >Company Reviews</a>
+		<a href=""  >Write A Review</a>
+		<a href="">Blog</a>
+		<a href=""  >Tests</a>
+	</div>
+</header>
+<script>
+	window.onload=function(){
+		$('.js-user-menu').on('click',function(){
+			$('.user-menu').fadeToggle(300);
+			return false;
+		});
+		$('.js-mobile-menu').on('click',function(){
+			$('.main-menu-mobile').fadeToggle(300);
+		});
+		$('.main-menu-mobile').not('.main-menu-mobile div').on('click',function(){
+			$('.main-menu-mobile').toggle();
+		});
+		var jsHeadHeight = Math.floor($('.js-menu-shift').height());
+		$(window).scroll(function () {
+			if(Math.floor($(window).scrollTop()) > jsHeadHeight) {
+				$('.main-menu').addClass('solid');
+				$('.main-header-menu-wrap').addClass('solid');
+			}
+			else{
+				$('.main-menu').removeClass('solid');
+				$('.main-header-menu-wrap').removeClass('solid');
+			}
+		});
+
+
+	};
+
+
+
+
+</script>
+
+{% endblock header %}
+
+
+
+
+{% block content %}
+
+{% endblock content %}
+
+
+
+
+{% block footer %}
+<script src="{% static 'config/js/jquery-2.2.4.min.js' %}"></script>
+<script src="{% static 'config/js/typeahead.bundle.min.js' %}"></script>
+<!-- <script src="https://d2vodp2q794hrx.cloudfront.net/js/custom/browse_interviews-1.min.js"></script> -->
+<link rel="stylesheet" href="{% static 'config/css/style.css' %}">
+
+<section class="login-popup">
+	<div class="login-box">
+		<a onclick="loginPopOut()" class="close"><i class="icon-cross"></i></a>
+
+		<div class="right-part">
+			<a href="">
+				<div style="background-color:#0077B5;"><i class="icon-linkedin"></i></div>
+				<div>login with linkedin</div>
+			</a>
+			<a href="">
+				<div style="background-color:#3b5998;"><i class="icon-facebook"></i></div>
+				<div>login with facebook</div>
+			</a>
+			<a href="#" class="customGPlusSignIn" id="customBtn" data-onsuccess="onSignIn" >
+				<div style="background-color:#dd4b39;"><i class="icon-google-plus"></i></div>
+				<div>login with google</div>
+			</a>
+		</div>
+		<div class="title">
+			<div class="headline">SignUp/Login</div>
+			<div>1-Step Login | Get unlimited access!</div>
+		</div>
+		<!--<div class="foot-note">
+			*Login is only for verification purpose<br/>
+			You can choose to hide your identity later.
+		</div>-->
+	</div>
+</section>
+<link rel="stylesheet" href="{% static 'config/css/login-popup.css' %}">
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+
+<style type="text/css">
+
+</style>
+<link rel="stylesheet" href="{% static 'config/css/more_css.css' %}">
+<div class="footer-main-wrap">
+
+	<div class="footer-social-media">
+		<div class="line-social"><hr/></div>
+		<div id="social-icons">
+			<a href="" target="_blank" ><div id="fb"><i class="icon-facebook"></i></div></a>
+			<a href="" target="_blank" ><div id="tw"><i class="icon-twitter"></i></div></a>
+			<a href="" target="_blank"><div id="ln"><i class="icon-linkedin"></i></div></a>
+			<a href="" target="_blank"><div id="gp"><i class="icon-google-plus"></i></div></a>
+			<a href="" target="_blank"><div id="yt"><i class="icon-youtube"></i></div></a>
+		</div>
+		<div class="line-social"><hr/></div>
+	</div>
+	<div class="footer-report-issues" >Bugs, Hugs, Suggestions? Ping Us!</div>
+	<div class="contact-form">
+		<form method="post" id="contact-us-form">
+			<input class="email" type="email" name="email" placeholder="Please enter your email" />
+        	<textarea name="message" id=""  rows="5" placeholder="Type here. "></textarea>
+        	<input type="submit" value="SUBMIT">
+		</form>
+
+
+	</div>
+	<div class="footer-links" style="margin-bottom: 2rem;margin-top: 2rem;">
+		<ul>
+			<li><a href="">About Us .</a></li>
+			<li><a href="">Join us .</a></li>
+			<li><a href="">Contribute .</a></li>
+			<li><a href="">Salary Calculator .</a></li>
+			<li><a href="">Blog .</a></li>
+			<li><a href="">Our Partners .</a></li>
+		</ul>
+	</div>
+	<div class="about-us-footer" style="margin-bottom: 1rem" >
+		CareerLama gives you free access to in-depth authentic information about companies story, products & services, office photos, team, office locations, amusing facts, stats, interview questions, interview tips and much more! Our mission is to help you prepare and research exhaustively about any company you set your eyes on. We need your help in this mission. Checkout how you could contribute <a href="/contribute" target="_blank" >here</a>.
+		</div>
+	<div class="footer-flight-image">
+
+	</div>
+
+
+	<div class="copyright">&copy; 2017 CareerLama.com. All rights reserved.</div>
+	<div class="privacy-policy"><a href="" target="_blank" >Disclaimer</a> &nbsp;|&nbsp; <a href="" target="_blank" >Privacy policy</a></div>
+</div>
+<div class="footer-main-wrap--mobile">
+	<i class="icon-CareerLama"></i>
+	<div class="footer-report-issues">Bugs, Hugs, Suggestions? Ping Us!</div>
+
+	<ul>
+		<li><a href="">Browse interviews</a></li>
+		<li><a href="">Browse companies</a></li>
+		<li><a href="">Write a review</a></li>
+		<li><a href="">Blog</a></li>
+		<li><a href="">Company Reviews</a></li>
+		<li><a href="">Salary calculator</a></li>
+	</ul>
+
+	<a class="white-title" href="" target="_blank" >Disclaimer</a> &nbsp;|&nbsp; <a class="white-title" href="" target="_blank" >Privacy policy</a>
+	<div class="copyright">&copy; 2017 CareerLama.com. All rights reserved.</div>
+
+</div>
+
+</body>
+</html>
+{% endblock footer %}

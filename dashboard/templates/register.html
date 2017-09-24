@@ -1,0 +1,108 @@
+{% extends "base_new.html" %}
+{% load staticfiles %}
+	{% block extra_css %}
+
+      <link rel="stylesheet" href="{% static 'config/css/master_3columns.css' %}">
+      <link rel="stylesheet" href="{% static 'config/css/contribute_form.css' %}">
+
+
+    <style>
+         .interview-show{
+         display: none;
+         }
+         .interview-hide {
+         display: none;
+         }
+         .review-info{
+         display: none;
+         }
+         .disabled-select{
+         color:rgba(214, 213, 213, 0.88);
+         background-color:rgba(165, 162, 162, 0.19);
+         }
+      </style>
+      <style>
+      </style>
+
+	{% endblock extra_css %}
+
+{% block content %}
+
+
+
+      <section class="cover-image js-menu-shift">
+         <div class="layer">
+            <h1 class="h1">Signup and share your interivew experiences here</h1>
+         </div>
+      </section>
+      <style>
+         .layer{
+         background: -webkit-linear-gradient(left, #191f30, #3d4972);
+         background-color: #2B3451;
+         }
+      </style>
+
+
+
+      <section class="container-content">
+         <section class="content__center">
+            <div class="content">
+               <section class="main-content card floating-card">
+                  <div class="top-block">
+
+                  </div>
+                  <div class=" ">
+                     <form method="post"  action="{% url 'dashboard:register_me' %}" id="ContributeIntroForm" name="ContributeIntroForm">
+                         {% csrf_token %}
+
+
+
+                                                    <div class="input-group">
+														<label for="first_name" class="section-heading interview-hide">Enter your first name</label>
+														<input type="text" name="first_name" id="first_name" placeholder="Enter your firstname" required value="" maxlength="150">
+													</div>
+                                                     <div class="input-group">
+														<label for="last_name" class="section-heading interview-hide">Enter your last name</label>
+														<input type="text" name="last_name" id="last_name" placeholder="Enter your lastname" required value="" maxlength="150">
+													</div>
+                                                        <div class="input-group">
+														<label for="email" class="section-heading interview-hide">Enter your email</label>
+													<input type="email" name="email" id="email" placeholder="Password" required value="" maxlength="150">
+													</div>
+                                                     <div class="input-group">
+														<label for="k" class="section-heading interview-hide">Enter your password</label>
+													<input type="password" name="password" id="k" placeholder="Password" required value="" maxlength="150">
+													</div>
+                                                    <div class="input-group">
+
+													    <button class="btn accent" name="register">Register Me <i class="icon-right-arrow"></i></button>
+
+                                                        <a class="btn" href="{% url 'dashboard:login' %}">Login</a>
+                                                         {% if msg %}
+                                                            <font color="red">{{msg}}</font>
+                                                        {% endif %}
+
+                                                    </div>
+
+
+                     </form>
+                  </div>
+               </section>
+
+
+            </div>
+         </section>
+         <section class="content__left">
+            <!-- js-auto-position class should be added for fixing this on scroll -->
+            <div class="content"></div>
+         </section>
+         <section class="content__right">
+            <!-- js-auto-position class should be added for fixing this on scroll -->
+            <div class="content"></div>
+         </section>
+      </section>
+
+
+
+
+{% endblock content %}

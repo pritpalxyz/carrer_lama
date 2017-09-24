@@ -1,0 +1,249 @@
+{% extends "base_new.html" %}
+{% load staticfiles %}
+
+{% block content %}
+
+	<link rel="stylesheet" href="https://d2vodp2q794hrx.cloudfront.net/css/partials/master_2columns.css">
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css"/>
+    <link rel="stylesheet" href="https://d2vodp2q794hrx.cloudfront.net/css/partials/interview_reviews_2.css">
+
+<section class="cover-image js-menu-shift">
+   <div class="about-company page-container" itemscope="" itemtype="http://schema.org/Organization">
+      <div class="company-logo"><img src="/mediadump/{{company.comapny_logo}}" onerror="this.onerror=null;this.src=&#39;/img/company-pages-icon.jpg&#39;;" atl="Infosys logo"></div>
+      <div class="content-wrap">
+         <div class="heading">
+            <div>
+               <p class="h1" itemprop="name">{{company.company_name}}</p>
+            </div>
+
+
+         </div>
+         <div class="company-stats">
+            <table>
+               <tbody>
+                  <tr>
+                     <td><span class="icon-Website"></span><span><a rel="nofollow" itemprop="url" href="{{company.weburl}}" target="_blank" style="color: white;">
+                       {{company.weburl}}
+                        </a></span>
+                     </td>
+                     <td><span class="icon-age2"></span><span>{{company.startedDate}}</span></td>
+                  </tr>
+                  <tr>
+                     <td><span class="icon-location3"></span><span>{{company.state}}</span></td>
+                     <td><span class="icon-business"></span><span>{{company.category}}</span></td>
+                  </tr>
+
+               </tbody>
+            </table>
+         </div>
+      </div>
+      <div class="button-wrap">
+
+
+          <a href="{% url 'dashboard:writeAReview' %}" ga="Header,WriteReview,Infosys">
+              <button class="write-a-review-btn">Write a review</button></a>
+      </div>
+   </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		  <section class="container-content page-container">
+         <div class="menu_tabs_wrap">
+            <ul class="menu_tabs">
+
+               <li><a class="active" ga="Header,SubNavclick,InterviewTab">
+                  Interview Questions ({{totalCount}})
+                  </a>
+               </li>
+            </ul>
+         </div>
+         <div>
+            <section>
+               <!-- js-auto-position class should be added for fixing this on scroll -->
+               <div class="content">
+
+                  <div class="interview__review__card">
+                     <div class="card-title">
+                        <h1 class="title">Infosys Interview Questions and Tips</h1>
+                        <span class="card-meta"><span>{{ companySpoof.number }} - {{ companySpoof.paginator.num_pages }}of {{totalCount}} Interviews</span>
+
+
+
+                     </div>
+                     <hr class="hr_margin">
+                     <div id="reviewsContainer">
+
+
+
+
+                         {% for inter in allinterview %}
+                        <article>
+                           <div class="reviews-card " itemprop="review" itemscope="">
+                              <div class="user-info">
+                                 <img src="/mediadump/{{inter.user.userProfileImage}}" class="user_img" alt="">
+                                 <div class="user-details">
+
+                                    <h2 class="review-title">{{inter.main_data.designation}}</h2>
+
+                                    <div class="user-id">
+                                       {{inter.main_data.submittedBy.first_name}} {{inter.main_data.submittedBy.last_name}} | {{inter.user.current_job_profile}}
+                                    </div>
+                                 </div>
+                                 <div class="time meta-data">
+                                    <div class="views-mobile">
+                                       11.4k views
+                                    </div>
+                                    <div>
+                                       <meta itemprop="datePublished" content="">
+                                       <time>{{inter.main_data.submittedDate}}</time>
+                                    </div>
+
+                                 </div>
+                              </div>
+                           </div>
+
+                           <div class="interview_process_wrap">
+                              <div class="inteview_process">
+                                 <p>Interview Process</p>
+                                 <span>
+                                    {% for st in inter.substeps %}
+                                      →
+                                    {{st.questions}}
+
+
+                                    {% endfor %}
+                                   </span>
+                              </div>
+                              <div class="interview_type">
+                                 <p>Experience</p>
+                                 <div class="be-details">
+                                    <div class="q-detail">
+                                       <div style="margin-top: 0.6rem;">
+                                          <div class="keys">
+                                             <p>Years of Experinces</p>
+                                             <p class="desc">
+                                                {{inter.main_data.yearOfExperience}} years
+                                             </p>
+                                          </div>
+                                            <div class="keys">
+                                             <p>Interview held on </p>
+                                             <p class="desc">
+                                                {{inter.main_data.month}} {{inter.main_data.year}}
+                                             </p>
+                                          </div>
+                                          <div class="keys">
+                                             <p>Highest Qualification</p>
+                                             <p class="desc">{{inter.main_data.highestQualification}}</p>
+                                          </div>
+                                          <div class="keys">
+                                             <p>Process Of Interview</p>
+                                             <p class="desc">{{inter.main_data.processOfInterview}}</p>
+                                          </div>
+                                          <div class="keys">
+                                             <p>Interview Source</p>
+                                             <p class="desc">
+                                                {{inter.main_data.source}}
+
+                                             </p>
+                                          </div>
+
+                                           <div class="keys">
+                                             <p>How Found ?</p>
+                                             <p class="desc">
+                                                {{inter.main_data.howfind}}
+
+                                             </p>
+                                          </div>
+
+                                           <div class="keys">
+                                             <p>Offer ?</p>
+                                             <p class="desc">
+                                                {{inter.main_data.getOfferstat}}
+
+                                             </p>
+                                          </div>
+                                          <div class="keys">
+                                             <p>Comments</p>
+                                             <p class="desc">{{inter.main_data.otherComment}}</p>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+
+
+                           </div>
+                           <div class="review_quality">
+                              <div style="display: inline-block;">
+                                 <button class="helpful"  loggedin="1" resourcetype="InterviewStory" buttonid="28724" ga="InterviewStory,HelpfulClick,Infosys-28724,29">
+                                 Helpful
+                                 <span id="HelpfulButton28724" value="29">
+                                 (0)
+                                 </span></button><button class="report-button report_modal tooltip" onclick="reportPopUp(28724,&#39;InterviewStory&#39;);" loggedin="1" ga="InterviewStory,ReportClick,Infosys-28724"><i class="icon-flag-grey "></i><span class="tooltiptext">Report</span></button>
+
+                              </div>
+
+                           </div>
+                           <hr class="hr_margin">
+                        </article>
+
+                         {% endfor %}
+
+                     </div>
+
+                     <div class="pagination_wrap_new">
+
+
+                                     {% if companySpoof.has_previous %}
+                                                   <a href="?page={{ companySpoof.previous_page_number }}" class="pagination_text"><span class="icon-right-arrow icon-180-rotate"></span> Previous</a>
+                                              {% endif %}
+
+
+
+
+
+                                            <a>{{ companySpoof.number }} of {{ companySpoof.paginator.num_pages }}</a>
+
+
+
+
+
+                                             {% if companySpoof.has_next %}
+
+                           <a href="?page={{ companySpoof.next_page_number }}" class="pagination_text" style="margin-left: 1rem">Next
+                             <span class="icon-right-arrow" style="display: inline-block;vertical-align: middle;position: relative;top: -1px;"></span>
+                         </a>
+
+                                                {% endif %}
+
+
+                     </div>
+
+
+
+                  </div>
+
+               </div>
+            </section>
+
+
+         </div>
+      </section>
+
+{% endblock content %}

@@ -1,0 +1,97 @@
+{% extends "base_new.html" %}
+{% load staticfiles %}
+	{% block extra_css %}
+
+      <link rel="stylesheet" href="{% static 'config/css/master_3columns.css' %}">
+      <link rel="stylesheet" href="{% static 'config/css/contribute_form.css' %}">
+
+
+    <style>
+         .interview-show{
+         display: none;
+         }
+         .interview-hide {
+         display: none;
+         }
+         .review-info{
+         display: none;
+         }
+         .disabled-select{
+         color:rgba(214, 213, 213, 0.88);
+         background-color:rgba(165, 162, 162, 0.19);
+         }
+      </style>
+      <style>
+      </style>
+
+	{% endblock extra_css %}
+
+{% block content %}
+
+
+
+      <section class="cover-image js-menu-shift">
+         <div class="layer">
+            <h1 class="h1">Update your profile information</h1>
+         </div>
+      </section>
+      <style>
+         .layer{
+         background: -webkit-linear-gradient(left, #191f30, #3d4972);
+         background-color: #2B3451;
+         }
+      </style>
+
+
+
+      <section class="container-content">
+         <section class="content__center">
+            <div class="content">
+               <section class="main-content card floating-card">
+                  <div class="top-block">
+
+                  </div>
+                  <div class=" ">
+                     <form method="post"  action="{% url 'dashboard:update_user_profile' %}" id="ContributeIntroForm" name="ContributeIntroForm">
+                         {% csrf_token %}
+
+
+
+                                                    <div class="input-group">
+														<label for="jobprofile" class="section-heading interview-hide">Your job profile</label>
+														<input type="text" name="jobprofile" id="jobprofile" placeholder="Your job profile" required value="{{userinfo.current_job_profile}}" maxlength="150">
+													</div>
+                                                     <div class="input-group">
+														<label for="location" class="section-heading interview-hide">Your Current Location</label>
+													<input type="text" name="location" id="location" placeholder="Current location" required value="{{userinfo.current_location}}" maxlength="150">
+													</div>
+                                                    <div class="input-group">
+
+													    <button class="btn" name="update">Update <i class="icon-right-arrow"></i></button>
+
+
+
+                                                    </div>
+
+
+                     </form>
+                  </div>
+               </section>
+
+
+            </div>
+         </section>
+         <section class="content__left">
+            <!-- js-auto-position class should be added for fixing this on scroll -->
+            <div class="content"></div>
+         </section>
+         <section class="content__right">
+            <!-- js-auto-position class should be added for fixing this on scroll -->
+            <div class="content"></div>
+         </section>
+      </section>
+
+
+
+
+{% endblock content %}

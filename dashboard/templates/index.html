@@ -1,0 +1,70 @@
+{% extends "base_new.html" %}
+
+
+{% block content %}
+
+
+
+
+
+<div class="head-cover js-menu-shift">
+	<div class="layer">
+
+		<h1>interview questions, experiences & tips</h1>
+		<hr/>
+		<h2 >your <span>secret</span> interview cheatsheet!</h2>
+		<div class="search-company">
+			<form id="searchCompanyForm" action="" method="get">
+				<input type="text" id="searchCompany"class="typeahead" name="CompanyName" placeholder="Type the name of the company you want to prepare for" required="true">
+				<button type="submit" value="" ><i class="icon-right-arrow"></i></button>
+			</form>
+		</div>
+	</div>
+</div>
+
+<h2 class="sector-group-title"><span>-------</span> Top companies interview questions <span>-------</span></h2>
+<section class="companies-block">
+
+
+		{% for comp in companies %}
+	<a href="{% url 'dashboard:company' comp.co.id %}" title="{{comp.co.company_name}}">
+		<div class="company-tile">
+			<h3>{{comp.co.company_name}}</h3>
+			<div class="company-tile__details">
+				<div class="company-tile__details__text">
+					<span>{{comp.count}} Interviews</span>
+					<span>{{comp.co.startedDate}}</span>
+					<span>{{comp.co.state}}</span>
+					<span>{{comp.co.category}}</span>
+				</div>
+				<div class="company-tile__details__image">
+					<img src="/mediadump/{{comp.co.comapny_logo}}" alt="{{comp.co.company_name}}">
+				</div>
+			</div>
+		</div>
+	</a>
+	{% endfor %}
+	<div align="center">
+	    <div class="pagination_wrap_new ">
+
+
+                                     {% if companySpoof.has_previous %}
+                                                   <a href="?page={{ companySpoof.previous_page_number }}" class="pagination_text"><span class="icon-right-arrow icon-180-rotate"></span> Previous</a>
+                                              {% endif %}
+
+                                            <a>{{ companySpoof.number }} of {{ companySpoof.paginator.num_pages }}</a>
+                                             {% if companySpoof.has_next %}
+
+                           <a href="?page={{ companySpoof.next_page_number }}" class="pagination_text" style="margin-left: 1rem">Next
+                             <span class="icon-right-arrow" style="display: inline-block;vertical-align: middle;position: relative;top: -1px;"></span>
+                         </a>
+                                                {% endif %}
+                     </div>
+		</div>
+
+
+
+
+
+</section>
+{% endblock content %}

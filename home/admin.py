@@ -9,7 +9,7 @@ from .models import *
 
 
 admin.site.unregister(Group)
-admin.site.unregister(User)
+# admin.site.unregister(User)
 
 admin.site.register(country)
 admin.site.register(States)
