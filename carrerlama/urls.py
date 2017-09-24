@@ -20,7 +20,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^old/', include('home.urls',namespace='home')),
+    # url(r'^old/', include('home.urls',namespace='home')),
     url(r'^', include('dashboard.urls', namespace='dashboard')),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 admin.site.site_header = ("Career Lama")
