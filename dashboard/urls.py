@@ -37,4 +37,7 @@ urlpatterns = [
 
 
 
+    url(r'all-companies/$',views.all_list_companies,name='all_list_companies'),
+
+
 ]

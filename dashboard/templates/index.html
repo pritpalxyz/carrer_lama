@@ -6,7 +6,6 @@
 
 
 
-
 <div class="head-cover js-menu-shift">
 	<div class="layer">
 
@@ -14,8 +13,9 @@
 		<hr/>
 		<h2 >your <span>secret</span> interview cheatsheet!</h2>
 		<div class="search-company">
-			<form id="searchCompanyForm" action="" method="get">
-				<input type="text" id="searchCompany"class="typeahead" name="CompanyName" placeholder="Type the name of the company you want to prepare for" required="true">
+			<form id="searchCompanyForm" action="{% url 'dashboard:all_list_companies' %}" method="get">
+
+				<input type="text" id="searchCompany"class="typeahead" name="q" placeholder="Type the name of the company you want to prepare for" required="true">
 				<button type="submit" value="" ><i class="icon-right-arrow"></i></button>
 			</form>
 		</div>
@@ -48,6 +48,7 @@
 	    <div class="pagination_wrap_new ">
 
 
+
                                      {% if companySpoof.has_previous %}
                                                    <a href="?page={{ companySpoof.previous_page_number }}" class="pagination_text"><span class="icon-right-arrow icon-180-rotate"></span> Previous</a>
                                               {% endif %}
@@ -62,7 +63,6 @@
                      </div>
 		</div>
 
-<a href="{% url 'social:begin' 'google-oauth2' %}">Google+</a>
 
 
 

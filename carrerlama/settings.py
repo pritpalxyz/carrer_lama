@@ -32,7 +32,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
-
+    'social_django',
 
     'dashboard.apps.DashboardConfig',
     'django.contrib.admin',
@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'home',
     # 'dashboard',
 
-    'social_django',
+
 
     'django.contrib.sites',
 
@@ -61,6 +61,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'carrerlama.urls'
@@ -110,12 +113,9 @@ DATABASES = {
 
 # authentication backend
 AUTHENTICATION_BACKENDS = (
-    'social_core.backends.open_id.OpenIdAuth',
-    'social_core.backends.google.GoogleOpenId',
     'social_core.backends.google.GoogleOAuth2',
-    'social_core.backends.google.GoogleOAuth',
-    'social_core.backends.twitter.TwitterOAuth',
-    # 'social_core.backends.yahoo.YahooOpenId',
+    'social_core.backends.facebook.FacebookOAuth2',
+    'social_core.backends.linkedin.LinkedinOAuth2',
     'django.contrib.auth.backends.ModelBackend',
 )
 
@@ -171,13 +171,34 @@ STATICFILES_DIRS = [
 ]
 
 # Social authentication keys
-LOGIN_REDIRECT_URL = '/done'
+LOGIN_REDIRECT_URL = 'http://127.0.0.1:8000'
 
-SOCIAL_AUTH_GOOGLE_OAUTH_KEY = '158282295560-sjaaaiq15pmb2npo2qfrhcau91f6r3jb.apps.googleusercontent.com'
-SOCIAL_AUTH_GOOGLE_OAUTH_SECRET = 'RFOWoWKiLyEBB6swAHLKLeJj'
-
-
-
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '158282295560-sjaaaiq15pmb2npo2qfrhcau91f6r3jb.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'RFOWoWKiLyEBB6swAHLKLeJj'
+SOCIAL_AUTH_RAISE_EXCEPTIONS = False
 
 
+SOCIAL_AUTH_FACEBOOK_KEY = '145003602901305'  # App ID
+SOCIAL_AUTH_FACEBOOK_SECRET = '84a031aa02e53bde3d06472fc37d1bff'
 
+SOCIAL_AUTH_LINKEDIN_OAUTH2_KEY = '81dvrduhqhvjgg'
+SOCIAL_AUTH_LINKEDIN_OAUTH2_SECRET = 'sNW20A7zjZKn7oU8'
+
+#
+# SOCIAL_AUTH_PIPELINE = (
+#     'social.pipeline.social_auth.social_details',
+#     'social.pipeline.social_auth.social_uid',
+#     'social.pipeline.social_auth.auth_allowed',
+#     'social_auth.backends.pipeline.social.social_auth_user',
+#     'social_auth.backends.pipeline.associate.associate_by_email',
+#     'social_auth.backends.pipeline.misc.save_status_to_session',
+#     'app.pipeline.redirect_to_form',
+#     'app.pipeline.username',
+#     'social_auth.backends.pipeline.user.create_user',
+#     'social_auth.backends.pipeline.social.associate_user',
+#     'social_auth.backends.pipeline.social.load_extra_data',
+#     'social_auth.backends.pipeline.user.update_user_details',
+#     'social_auth.backends.pipeline.misc.save_status_to_session',
+#     'app.pipeline.redirect_to_form2',
+#     'app.pipeline.first_name',
+# )

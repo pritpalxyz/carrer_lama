@@ -51,33 +51,40 @@
                   <div class="top-block">
 
                   </div>
-                  <div class=" ">
-                     <form method="post"  action="{% url 'dashboard:login_check' %}" id="ContributeIntroForm" name="ContributeIntroForm">
-                         {% csrf_token %}
+                  <div class="content__center">
+
+
+                        <a href="{% url 'social:begin' 'facebook' %}">
+                            <img style="width:250px" src="{% static 'config/image/facebook_login.png' %}"/></a>
+                     <br/>  <a href="{% url 'social:begin' 'google-oauth2' %}"> <img style="width:250px" src="{% static 'config/image/google.png' %}"/></a>
+
+
+                      <!--<form method="post"  action="{% url 'dashboard:login_check' %}" id="ContributeIntroForm" name="ContributeIntroForm">-->
+                         <!--{% csrf_token %}-->
 
 
 
-                                                    <div class="input-group">
-														<label for="email" class="section-heading interview-hide">Enter your email</label>
-														<input type="email" name="email" id="email" placeholder="Enter your email" required value="" maxlength="150">
-													</div>
-                                                     <div class="input-group">
-														<label for="k" class="section-heading interview-hide">Enter your password</label>
-													<input type="password" name="password" id="k" placeholder="Password" required value="" maxlength="150">
-													</div>
-                                                    <div class="input-group">
+                                                    <!--<div class="input-group">-->
+														<!--<label for="email" class="section-heading interview-hide">Enter your email</label>-->
+														<!--<input type="email" name="email" id="email" placeholder="Enter your email" required value="" maxlength="150">-->
+													<!--</div>-->
+                                                     <!--<div class="input-group">-->
+														<!--<label for="k" class="section-heading interview-hide">Enter your password</label>-->
+													<!--<input type="password" name="password" id="k" placeholder="Password" required value="" maxlength="150">-->
+													<!--</div>-->
+                                                    <!--<div class="input-group">-->
 
-													    <button class="btn accent" name="Login">Login <i class="icon-right-arrow"></i></button>
+													    <!--<button class="btn accent" name="Login">Login <i class="icon-right-arrow"></i></button>-->
 
-                                                        <a class="btn" href="{% url 'dashboard:register' %}">Register</a>
-                                                           {% if msg %}
-                                                            <font color="red">{{msg}}</font>
-                                                        {% endif %}
+                                                        <!--<a class="btn" href="{% url 'dashboard:register' %}">Register</a>-->
+                                                           <!--{% if msg %}-->
+                                                            <!--<font color="red">{{msg}}</font>-->
+                                                        <!--{% endif %}-->
 
-                                                    </div>
+                                                    <!--</div>-->
 
 
-                     </form>
+                     <!--</form>-->
                   </div>
                </section>
 

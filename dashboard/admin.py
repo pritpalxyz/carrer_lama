@@ -6,7 +6,8 @@ from .models import *
 
 # Register your models here.
 
-admin.site.register(interviews)
-admin.site.register(questionsAsked)
 
-admin.site.register(userinformation)
+
+admin.site.register(all_colleges)
+admin.site.register(qualifications)
+admin.site.register(company_interviews)

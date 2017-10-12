@@ -26,29 +26,34 @@ class indexView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(self.__class__, self).get_context_data(**kwargs)
-        allcompanies = companies.objects.all()
+        print self.request.POST
 
-        paginator = Paginator(allcompanies, 30)
+        allcompanies = companies.objects.all()
+        allcompanies_list = []
+        for comps in allcompanies:
+            if int(company_interviews.objects.filter(company=comps).count()) > 0:
+                allcompanies_list.append(comps)
+
+        paginator = Paginator(allcompanies_list, 30)
 
         page = self.request.GET.get('page')
         try:
-            allcompanies = paginator.page(page)
+            allcompanies_list = paginator.page(page)
         except PageNotAnInteger:
-            allcompanies = paginator.page(1)
+            allcompanies_list = paginator.page(1)
         except EmptyPage:
-            allcompanies = paginator.page(paginator.num_pages)
+            allcompanies_list = paginator.page(paginator.num_pages)
 
         comps   = []
 
-        for compo in allcompanies:
-
+        for compo in allcompanies_list:
             mydict = {
                 "co":compo,
-                "count":int(interviews.objects.filter(company=compo).count())
+                "count":int(company_interviews.objects.filter(company=compo).count())
             }
             comps.append(mydict)
 
-        context['companySpoof'] = allcompanies
+        context['companySpoof'] = allcompanies_list
         context['companies'] = comps
         return context
 
@@ -64,7 +69,9 @@ class writeAReviewView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(self.__class__, self).get_context_data(**kwargs)
         allcompanies = companies.objects.all().order_by('company_name')
+        allcolleges     = all_colleges.objects.all().order_by('college_name')
         context['companies'] = allcompanies
+        context['allcolleges'] = allcolleges
         return context
 
 class writeReviewRest(TemplateView):
@@ -79,8 +86,12 @@ class writeReviewRest(TemplateView):
         context = super(self.__class__, self).get_context_data(**kwargs)
 
         compid          = self.kwargs['pk']
-        interviewinsta      = interviews.objects.get(pk=compid)
+        interviewinsta      = company_interviews.objects.get(pk=compid)
+        allQualifications       = qualifications.objects.all().order_by('qualification_name')
+
+
         context['interviewinsta'] =  interviewinsta
+        context['allQualifications'] = allQualifications
 
         return context
 
@@ -96,10 +107,10 @@ class companyView(TemplateView):
         cominsta        = companies.objects.get(pk=compid)
 
 
-        queryObject  = Q(company=cominsta) & Q(showStat='1')
-        allinterview = interviews.objects.filter(queryObject).order_by('-id')
+        queryObject  = Q(company=cominsta) & Q(show_stat='show')
+        allinterview = company_interviews.objects.filter(queryObject).order_by('-id')
 
-        totalCount   = interviews.objects.filter(queryObject).count()
+        totalCount   = company_interviews.objects.filter(queryObject).count()
 
         paginator = Paginator(allinterview, 10)
 
@@ -115,9 +126,11 @@ class companyView(TemplateView):
 
         interviewcontent = []
         for inter in allinterview:
-            subStepsAsked = questionsAsked.objects.filter(interview=inter)
+
+            profile_image = "https://graph.facebook.com/{0}/picture?type=normal".format(inter.submittedBy.social_auth.get().uid)
             try:
                 userSubinfo     = userinformation.objects.get(user=inter.submittedBy)
+
             except:
                 userSubinfo = {
                     "userProfileImage":"",
@@ -126,8 +139,8 @@ class companyView(TemplateView):
                 }
             mydict = {
                 "main_data":inter,
-                "substeps":subStepsAsked,
                 "user":userSubinfo,
+                "profile_image":profile_image,
             }
             interviewcontent.append(mydict)
 
@@ -169,6 +182,22 @@ class profileView(TemplateView):
 
         return context
 
+class all_list_companiesView(TemplateView):
+    template_name = "allcompanies.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(self.__class__, self).get_context_data(**kwargs)
+        search_keyword = self.request.GET.get('q')
+        search_results = companies.objects.filter(company_name__icontains=search_keyword).order_by('company_name')
+        context['companies'] = search_results
+        context['query'] = search_keyword
+
+        return context
+
+
+
+
+
 
 
 
@@ -181,6 +210,7 @@ company         = companyView.as_view()
 login           = loginView.as_view()
 register        = registerView.as_view()
 profile         = profileView.as_view()
+all_list_companies  = all_list_companiesView.as_view()
 
 
 
@@ -280,14 +310,24 @@ def get_all_companies(request):
 @login_required(login_url='/login/')
 def submitPhaseOne(request):
     if request.method == 'POST':
+        print request.POST
         companyname  = request.POST['company']
         designation = request.POST['job_designation']
+        experience = request.POST['experince']
+        anonymosStat = request.POST['anonymosStat']
+        college_name = request.POST['college_name']
 
-        companyinsta    = companies.objects.get(pk=companyname)
 
-        insInsta = interviews(company=companyinsta)
-        insInsta.designation = designation
-        insInsta.submittedBy    = request.user
+
+        companyinsta                      = companies.objects.get(pk=companyname)
+        collegeInsta                      = all_colleges.objects.get(pk=college_name)
+
+        insInsta                          = company_interviews(company=companyinsta)
+        insInsta.job_title_designation    = designation
+        insInsta.submittedBy              = request.user
+        insInsta.college_name             = collegeInsta
+        insInsta.work_experience          = experience
+        insInsta.keep_anonymous           = anonymosStat
         insInsta.save()
         submitID        = insInsta.id
         return HttpResponseRedirect(reverse('dashboard:writeReviewRest',args=(submitID,)))
@@ -345,36 +385,33 @@ def deleteSubProcess(request):
 @login_required(login_url='/login/')
 def submitPhaseTwo(request):
     if request.method == 'POST':
-        yearOfExperience        = request.POST['yearOfExperience']
+
         qualification           = request.POST['qualification']
-        anonymosStat            = request.POST['anonymosStat']
         appearmonth             = request.POST['appearmonth']
         appearyear              = request.POST['appearyear']
-        whenInterview           = request.POST['whenInterview']
-        interviewProcess        = request.POST['interviewProcess']
-        questionAskedVal           = request.POST['questionAsked']
-        HowFind                 = request.POST['HowFind']
+        interviewProcess           = request.POST['interviewProcess']
+        anything_else               = request.POST['anything_else']
+
+        howFindeasy                 = request.POST['HowFind']
         HowOffer                = request.POST['HowOffer']
-        comments                = request.POST['comments']
         reviewid                = request.POST['reviewid']
 
-        interviewInsta                          = interviews.objects.get(pk=reviewid)
-        interviewInsta.yearOfExperience         = yearOfExperience
-        interviewInsta.highestQualification     = qualification
-        interviewInsta.anyonmousStat            = anonymosStat
-        interviewInsta.month                    = appearmonth
-        interviewInsta.year                     = appearyear
-        interviewInsta.source                   = whenInterview
-        interviewInsta.howfind                  = HowFind
-        interviewInsta.getOfferstat             = HowOffer
-        interviewInsta.otherComment             = comments
-        interviewInsta.processOfInterview       = interviewProcess
-        interviewInsta.showStat                 = "1"
+        qualification =             qualifications.objects.get(pk=qualification)
+
+        interviewInsta                          = company_interviews.objects.get(pk=reviewid)
+
+        interviewInsta.highest_qualification    = qualification
+        interviewInsta.apear_month              = appearmonth
+        interviewInsta.apear_year               = appearyear
+        interviewInsta.interview_prccess        = interviewProcess
+        interviewInsta.anything_else_review     = anything_else
+        interviewInsta.how_did_you_get          = howFindeasy
+        interviewInsta.did_you_get_offer        = HowOffer
+
+        interviewInsta.show_stat                 = "show"
         interviewInsta.save()
 
-        qStat = questionsAsked(interview=interviewInsta)
-        qStat.questions = questionAskedVal
-        qStat.save()
+
         return HttpResponseRedirect(reverse('dashboard:thanks_page'))
     else:
         return HttpResponse('not allowed')

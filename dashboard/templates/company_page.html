@@ -96,13 +96,23 @@
                         <article>
                            <div class="reviews-card " itemprop="review" itemscope="">
                               <div class="user-info">
-                                 <img src="/mediadump/{{inter.user.userProfileImage}}" class="user_img" alt="">
+
+                                  {% if inter.main_data.keep_anonymous == 'yes' %}
+                                        <img src="/mediadump/{{company.comapny_logo}}" class="user_img" alt="">
+                                  {% else %}
+                                        <img src="{{inter.profile_image}}" class="user_img" alt="">
+                                  {% endif %}
                                  <div class="user-details">
 
-                                    <h2 class="review-title">{{inter.main_data.designation}}</h2>
+                                    <h2 class="review-title">{{inter.main_data.job_title_designation}}</h2>
 
                                     <div class="user-id">
-                                       {{inter.main_data.submittedBy.first_name}} {{inter.main_data.submittedBy.last_name}} | {{inter.user.current_job_profile}}
+                                         {% if inter.main_data.keep_anonymous == 'yes' %}
+                                                Anonymous
+                                        {% else %}
+
+                                            {{inter.main_data.submittedBy.first_name}} {{inter.main_data.submittedBy.last_name}} | {{inter.user.current_job_profile}}
+                                        {% endif %}
                                     </div>
                                  </div>
                                  <div class="time meta-data">
@@ -119,68 +129,57 @@
                            </div>
 
                            <div class="interview_process_wrap">
-                              <div class="inteview_process">
-                                 <p>Interview Process</p>
-                                 <span>
-                                    {% for st in inter.substeps %}
-                                      →
-                                    {{st.questions}}
 
-
-                                    {% endfor %}
-                                   </span>
-                              </div>
                               <div class="interview_type">
                                  <p>Experience</p>
                                  <div class="be-details">
                                     <div class="q-detail">
                                        <div style="margin-top: 0.6rem;">
                                           <div class="keys">
-                                             <p>Years of Experinces</p>
+                                             <p>College name</p>
                                              <p class="desc">
-                                                {{inter.main_data.yearOfExperience}} years
+                                                {{inter.main_data.college_name}}
                                              </p>
                                           </div>
                                             <div class="keys">
-                                             <p>Interview held on </p>
+                                             <p>Work experience at the time of interview </p>
                                              <p class="desc">
-                                                {{inter.main_data.month}} {{inter.main_data.year}}
+                                                {{inter.main_data.work_experience}} years
                                              </p>
                                           </div>
                                           <div class="keys">
                                              <p>Highest Qualification</p>
-                                             <p class="desc">{{inter.main_data.highestQualification}}</p>
+                                             <p class="desc">{{inter.main_data.highest_qualification}}</p>
                                           </div>
                                           <div class="keys">
-                                             <p>Process Of Interview</p>
-                                             <p class="desc">{{inter.main_data.processOfInterview}}</p>
+                                             <p>When did  appeared for the process</p>
+                                             <p class="desc">{{inter.main_data.apear_month}} {{inter.main_data.apear_year}}</p>
                                           </div>
                                           <div class="keys">
-                                             <p>Interview Source</p>
+                                             <p>Process of interview</p>
                                              <p class="desc">
-                                                {{inter.main_data.source}}
+                                                {{inter.main_data.interview_prccess}}
+                                             </p>
+                                          </div>
+
+                                           <div class="keys">
+                                             <p>Other comments</p>
+                                             <p class="desc">
+                                                {{inter.main_data.anything_else_review}}
 
                                              </p>
                                           </div>
 
                                            <div class="keys">
-                                             <p>How Found ?</p>
+                                             <p>How did i get the interview schedule ?</p>
                                              <p class="desc">
-                                                {{inter.main_data.howfind}}
-
-                                             </p>
-                                          </div>
-
-                                           <div class="keys">
-                                             <p>Offer ?</p>
-                                             <p class="desc">
-                                                {{inter.main_data.getOfferstat}}
+                                                {{inter.main_data.how_did_you_get}}
 
                                              </p>
                                           </div>
                                           <div class="keys">
-                                             <p>Comments</p>
-                                             <p class="desc">{{inter.main_data.otherComment}}</p>
+                                             <p>Get the offer?</p>
+                                             <p class="desc">{{inter.main_data.did_you_get_offer}}</p>
                                           </div>
                                        </div>
                                     </div>

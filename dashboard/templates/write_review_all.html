@@ -25,16 +25,17 @@
       </style>
       <style>
       </style>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js"></script>
+
 	{% endblock extra_css %}
 
 {% block content %}
 
-
+<link rel="stylesheet" href="{% static 'values/src/jquery-customselect.css' %}">
+<script src="{% static 'values/src/jquery-customselect.js' %}"></script>
 
       <section class="cover-image js-menu-shift">
          <div class="layer">
-            <h1 class="h1">Share and help other job-seekers</h1>
+            <h1 class="h1">Interview advice for {{interviewinsta.company.company_name}}</h1>
          </div>
       </section>
       <style>
@@ -46,8 +47,8 @@
 
 
 
-      <section class="container-content" ng-app="lama-app">
-         <section class="content__center" ng-controller="lama-controller">>
+      <section class="container-content" >
+         <section class="content__center">
             <div class="content">
                <section class="main-content card floating-card">
                   <div class="top-block">
@@ -58,91 +59,31 @@
                         {% csrf_token %}
                          <div class="input-group">
 
-                             <label class="section-heading interview-hide">Company Name you interviewed for?</label>
+
                              <img src="/mediadump/{{interviewinsta.company.comapny_logo}}"/>
+                             <hr/>
 
                              <label class="section-heading">Job Title/Designation you interviewed for?</label>
                              <br/>
-                             <label>{{interviewinsta.designation}}</label>
+                             <label>{{interviewinsta.job_title_designation}}</label>
                          </div>
                         <div class="input-group">
 
 
 
 
+                                                    <input type="hidden" name="reviewid" value="{{interviewinsta.id}}"/>
+
 													<div class="input-group">
-														<label for="searchCompany" class="section-heading interview-hide">Work Experience at the time of interview?</label>
+														<label for="qualification" class="section-heading interview-hide">What is the highest qualification at the time of interview?</label>
 
 															<br/>
-														<select name="yearOfExperience"  class="workExperience">
-															<option >Select years of experience</option>
-                                                            <option value="0" >Fresher</option>
-                                                            <option value="0-1" >0-1 years</option>
-                                                            <option value="1-2" >1-2 years</option>
-                                                            <option value="2-3" >2-3 years</option>
-                                                            <option value="3-4" >3-4 years</option>
-                                                            <option value="4-5" >4-5 years</option>
-                                                            <option value="5-6" >5-6 years</option>
-                                                            <option value="6-7" >6-7 years</option>
-                                                            <option value="7-8" >7-8 years</option>
-                                                            <option value="8-9" >8-9 years</option>
-                                                            <option value="9-10" >9-10 years</option>
-                                                            <option value="10+" >10+ years</option>
+														<select id="qualification"  name="qualification"  class='custom-select'>
+															 <option>Select Qualification </option>
+                                                                {% for quali in allQualifications %}
+                                                                        <option value="{{quali.id}}">{{quali.qualification_name}}</option>
+                                                                {% endfor %}
 														 </select>
-
-
-													</div>
-
-													<div class="input-group">
-														<label for="searchCompany" class="section-heading interview-hide">What is the highest qualification at the time of interview?</label>
-
-															<br/>
-														<select name="qualification"  class="form-control">
-															 <option value="0" selected>Select Qualification </option>
-                                                                <option value="Not Pursuing Graduation">Not Pursuing Graduation</option>
-                                                                <option value="B.A">B.A</option>
-                                                                <option value="B.Arch">B.Arch</option>
-                                                                <option value="B.Des.">B.Des.</option>
-                                                                <option value="B.El.Ed">B.El.Ed</option>
-                                                                <option value="B.P.Ed">B.P.Ed</option>
-                                                                <option value="B.U.M.S">B.U.M.S</option>
-                                                                <option value="BAMS">BAMS</option>
-                                                                <option value="BCA">BCA</option>
-                                                                <option value="B.B.A/ B.M.S">B.B.A/ B.M.S</option>
-                                                                <option value="B.Com">B.Com</option>
-                                                                <option value="B.Ed">B.Ed</option>
-                                                                <option value="BDS">BDS</option>
-                                                                <option value="BFA">BFA</option>
-                                                                <option value="BHM">BHM</option>
-                                                                <option value="B.Pharma">B.Pharma</option>
-                                                                <option value="B.Sc">B.Sc</option>
-                                                                <option value="B.Tech/B.E.">B.Tech/B.E.</option>
-                                                                <option value="BHMS">BHMS</option>
-                                                                <option value="LLB">LLB</option>
-                                                                <option value="MBBS">MBBS</option>
-                                                                <option value="Diploma">Diploma</option>
-                                                                <option value="BVSC">BVSC</option>
-                                                                <option value="Other">Other</option>
-
-														 </select>
-
-
-													</div>
-													<div class="input-group">
-														<label for="searchCompany" class="section-heading interview-hide">Would you like to keep post anonymous?</label>
-
-
-															<br/>
-															<div style="margin-top: 0.6rem;">
-																<input id="anonymosStatyes" class="toggle toggle-left"
-																										 name="anonymosStat" value="1" type="radio">
-																				<label for="anonymosStatyes" class="" style="margin-left: 0.2rem;">Yes</label>
-																				<input id="anonymosStatno" class="toggle toggle-left"
-																				 name="anonymosStat" value="0" type="radio">
-														<label for="anonymosStatno" class="" style="margin-left: 0.2rem;">No</label>
-																						</div>
-
-
 													</div>
 
 
@@ -187,73 +128,25 @@
                                                                   <option value="2002">2002</option>
                                                                   <option value="2001">2001</option>
                                                                   <option value="2000">2000</option>
-                                                                  <option value="1999">1999</option>
-                                                                  <option value="1998">1998</option>
-                                                                  <option value="1997">1997</option>
-                                                                  <option value="1996">1996</option>
-                                                                  <option value="1995">1995</option>
-                                                                  <option value="1994">1994</option>
-                                                                  <option value="1993">1993</option>
-                                                                  <option value="1992">1992</option>
-                                                                  <option value="1991">1991</option>
-                                                                  <option value="1990">1990</option>
-                                                                  <option value="1989">1989</option>
-                                                                  <option value="1988">1988</option>
-                                                                  <option value="1987">1987</option>
-                                                                  <option value="1986">1986</option>
-                                                                  <option value="1985">1985</option>
-                                                                  <option value="1984">1984</option>
-                                                                  <option value="1983">1983</option>
-                                                                  <option value="1982">1982</option>
-                                                                  <option value="1981">1981</option>
-                                                                  <option value="1980">1980</option>
-                                                                  <option value="1979">1979</option>
-                                                                  <option value="1978">1978</option>
-                                                                  <option value="1977">1977</option>
-                                                                  <option value="1976">1976</option>
-                                                                  <option value="1975">1975</option>
 
  														 </select>
 
 
 													</div>
-													<div class="input-group">
-														<label for="whenInterview" class="section-heading interview-hide">How did you get the interview?</label>
 
-															<br/>
-														<select id="whenInterview" name="whenInterview" class="workExperience">
-															 <option value="0" selected>Select Source </option>
-														          <option value="Campus Placement">Campus Placement</option>
-                                                                <option value="Consultancy">Consultancy</option>
-                                                                <option value="Company Website">Company Website</option>
-                                                                <option value="Referral">Referral</option>
-                                                                <option value="Job Portal">Job Portal</option>
-                                                                <option value="Other">Other</option>
-
-														 </select>
-													</div>
 
 													<div class="input-group">
 														<label for="poi" class="section-heading interview-hide">Describe the process of interview?</label>
 
 															<br/>
-														<input type="text" name="interviewProcess" id="poi" placeholder="Eg. no of rounds, Shortlisting Criteria, Written test" required value="" maxlength="150">
-
+													    <textarea name="interviewProcess" id="poi" placeholder="Eg. no of rounds, Shortlisting Criteria, Written test" required value=""  rows="5"></textarea>
 
 
 													</div>
 													<div class="input-group">
 
-														<label  class="section-heading interview-hide">Question asked in the interview?</label>
-                                                          <div ng-repeat="x in records">
-
-                                                             <label><b><span ng-bind="x.name"></span></b>  <span style="color:red;font-size:x-small" ng-click="deleteSub(x.id)">Remove</span></label>
-                                                             <br/>
-                                                        </div>
-
-														<input type="text" name="questionAsked" ng-model='questionAskedid' placeholder="Eg. no of rounds, Shortlisting Criteria, Written test" required value="" maxlength="150">
-														<input type="hidden" value="{{interviewinsta.id}}" name="reviewid" />
-                                                        <a class="btn" ng-click="addNewValues()">Add New</a>
+														<label  class="section-heading interview-hide">Anything else you want to mention about the interview?</label>
+                                                         <textarea name="anything_else"  placeholder="Tips or any specific prepraton required for similar job profile" required value=""  rows="5"></textarea>
 
 
 													</div>
@@ -263,20 +156,17 @@
 															<br/>
 															<div style="margin-top: 0.6rem;">
 																<input id="howFindeasy" class="toggle toggle-left"
-																										 name="HowFind" value="easy" type="radio">
-																				<label for="howFindeasy" class="" style="margin-left: 0.2rem;">Easy</label>
+																										 name="HowFind" value="Campus Placement" type="radio">
+																				<label for="howFindeasy" class="" style="margin-left: 0.2rem;">Campus Placement</label>
 
 
                                                                 <input id="Howfinddiff" class="toggle toggle-left"
-																				 name="HowFind" value="difficult" type="radio">
-																				 	<label for="Howfinddiff" class="" style="margin-left: 0.2rem;">Difficult</label>
+																				 name="HowFind" value="Lateral hiring" type="radio">
+																				 	<label for="Howfinddiff" class="" style="margin-left: 0.2rem;">Lateral hiring</label>
 
 
 
-																					<input id="howfindvdiff" class="toggle toggle-left"
-																					 name="HowFind" value="very_difficult" type="radio">
-																					 	<label for="howfindvdiff" class="" style="margin-left: 0.2rem;">Very Difficult</label>
-																													</div>
+															</div>
 
 
 													</div>
@@ -288,35 +178,24 @@
 															<br/>
 															<div style="margin-top: 0.6rem;">
 																<input id="HowOfferYes" class="toggle toggle-left"
-																										 name="HowOffer" value="1" type="radio">
+																										 name="HowOffer" value="yes" type="radio">
 																				<label for="HowOfferYes" class="" style="margin-left: 0.2rem;">Yes</label>
 
 
 
 																				<input id="HowOfferNo" class="toggle toggle-left"
-																				 name="HowOffer" value="1" type="radio">
+																				 name="HowOffer" value="no" type="radio">
 																					<label for="HowOfferNo" class="" style="margin-left: 0.2rem;">No </label>
 
 
 
-																					<input id="HowOfferAwaiting" class="toggle toggle-left"
-																					 name="HowOffer" value="1" type="radio">
-																						<label for="HowOfferAwaiting" class="" style="margin-left: 0.2rem;">Awaiting</label>
-																													</div>
+															</div>
 
 
 													</div>
 
 													<div class="input-group">
-														<label for="comments" class="section-heading interview-hide">Anything else you want to mention about the interview?</label>
-
-															<br/>
-														<input type="text" name="comments" id="comments" placeholder="E.g: Any Specific Prepration required for similar job process,Duration of process" required value="" maxlength="150">
-
-
-													</div>
-													<div class="input-group">
-                                                            <input type="submit" class="btn accent" value="Next"/>
+                                                            <input type="submit" class="btn accent" value="Submit"/>
 
 													</div>
 
@@ -331,60 +210,7 @@
                </section>
 
 
-               <h2 class="section-heading" style="margin: 3rem 0 1rem 0;">Top Interview Stories</h2>
-               <div class="row top-reviews" style="">
-                  <a href="/mckinsey-interview-questions?rid=9016" target="_blank">
-                     <div class="card row">
-                        <div><img src="/img/icons/user-default-image.jpg"
-                           class="round_image-small"
-                           alt="Profile Picture"></div>
-                        <div>
-                           <span>"He recognized me from our interaction at the McKinsey dinner. So, he didn’t re…"</span>
-                           <div style="margin-top: 0.5rem;"><strong>Mckinsey</strong> | <span style="color:#ababab;">2.9k Views</span></div>
-                        </div>
-                     </div>
-                  </a>
-                  <a href="/zs-associates-interview-questions?rid=8992" target="_blank">
-                     <div class="card row">
-                        <div><img src="/img/icons/user-default-image.jpg"
-                           class="round_image-small"
-                           alt="Profile Picture"></div>
-                        <div>
-                           <span>"The focus is more on structured approach and your analytical skills (i.e. the wa…"</span>
-                           <div style="margin-top: 0.5rem;"><strong>ZS Associates</strong> | <span style="color:#ababab;">18.8k Views</span></div>
-                        </div>
-                     </div>
-                  </a>
-               </div>
-               <h2 class="section-heading" style="margin:3rem 0 1rem 0;">Top Company Reviews</h2>
-               <div class="row top-reviews" style="margin-bottom: 5rem">
-                  <a href="/johnny-rockets-reviews?rid=92325" target="_blank">
-                     <div class="card row">
-                        <div><img src="https://media.licdn.com/mpr/mprx/0_iYAYbaRoBOvXHz1WGydYuI-oP7v5HqmkieIr3UDI-x5XHX1d7fI06oMoKVd5SzPMdf5rhWVEspXkwreRfDqC7VRQ0pXLwrBWfDqgkRawqjAWT6uz_yC1X7hsxWOzGrhZQmKti5QNbYJ"
-                           class="round_image-small"
-                           alt="Profile Picture"></div>
-                        <div>
-                           <div style="margin-bottom: 0.5rem;"><strong>Johnny Rockets</strong> |
-                              <span style="color:#ababab;"><span><i class="icon-star selected" style="color:#FFC107;"></i></span><span><i class="icon-star selected" style="color:#FFC107;"></i></span><span><i class="icon-star selected" style="color:#FFC107;"></i></span><span><i class="icon-star selected" style="color:#FFC107;"></i></span><span><i class="icon-star selected" style="color:#FFC107;"></i></span></span>
-                           </div>
-                           <span>Likes: "Work culture , Learning ,Team management"</span>
-                        </div>
-                     </div>
-                  </a>
-                  <a href="/carrier-airconditionong-and-refrigeration-reviews?rid=53486" target="_blank">
-                     <div class="card row">
-                        <div><img src="/img/icons/user-default-image.jpg"
-                           class="round_image-small"
-                           alt="Profile Picture"></div>
-                        <div>
-                           <div style="margin-bottom: 0.5rem;"><strong>Carrier Aircond…</strong> |
-                              <span style="color:#ababab;"><span><i class="icon-star selected" style="color:#FFC107;"></i></span><span><i class="icon-star selected" style="color:#FFC107;"></i></span><span><i class="icon-star selected" style="color:#FFC107;"></i></span><span><i class="icon-star selected" style="color:#FFC107;"></i></span><span><i class="icon-star not-selected" style="color:#efefef;"></i></span></span>
-                           </div>
-                           <span>Likes: "good work environment"</span>
-                        </div>
-                     </div>
-                  </a>
-               </div>
+
             </div>
          </section>
          <section class="content__left">
@@ -397,41 +223,13 @@
          </section>
       </section>
 
+
+
 <script>
-    var app = angular.module('lama-app',[]).controller('lama-controller',function($scope,$http,$window){
-    console.clear();
+    $(function() {
+  $("#qualification").customselect();
 
-
-                var reviewid    = "{{interviewinsta.id}}";
-
-                $scope.addNewValues = function() {
-                 console.clear();
-                        console.log($scope.questionAskedid);
-                        console.log(reviewid);
-                        var param = {reviewid:reviewid,process:$scope.questionAskedid};
-                        var req = {method: 'POST',url: '/write-sub-process/',data: JSON.stringify(param)}
-                        $http(req).then(function(result){
-                            if(result.data.status == 'true'){
-                                console.log(result.data.data);
-                                $scope.records = result.data.data;
-                                $scope.questionAskedid = "";
-                                console.clear();
-                            }
-                        });
-                    }
-                    $scope.deleteSub = function(subval){
-                        console.log(subval);
-                        var param = {reviewid:subval,mainid:reviewid};
-                        var req = {method: 'POST',url: '/delete-sub-process/',data: JSON.stringify(param)}
-                        $http(req).then(function(result){
-                            if(result.data.status == 'true'){
-                                console.clear();
-                                $scope.records = result.data.data;
-                            }
-                        });
-                    }
-        });
-
+});
 </script>
 
 {% endblock content %}

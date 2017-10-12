@@ -57,6 +57,14 @@ input:focus {
     display: block;
     line-height: 150%
 }
+.input-group textarea {
+    padding: 0.5rem 0.8rem 0.5rem 0.2rem;
+    font-size: 1.1rem;
+    border: none;
+    border-bottom: 1px solid #181F45;
+    width: 55%
+}
+
 .input-group input[type="text"] {
     padding: 0.5rem 0.8rem 0.5rem 0.2rem;
     font-size: 1.1rem;

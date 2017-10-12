@@ -19,10 +19,11 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
+    url('^social-auth/', include('social_django.urls', namespace='social')),
     url(r'^admin/', admin.site.urls),
     # url(r'^old/', include('home.urls',namespace='home')),
     url(r'^', include('dashboard.urls', namespace='dashboard')),
-    url('^social-auth/', include('social_django.urls', namespace='social')),
+
 
 
 

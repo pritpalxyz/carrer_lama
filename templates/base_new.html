@@ -28,6 +28,60 @@
 <meta name="msapplication-navbutton-color" content="#10152E">
 <!-- iOS Safari -->
 <meta name="apple-mobile-web-app-status-bar-style" content="#10152E">
+<style>
+	.popup {
+    width:100%;
+    height:100%;
+    display:none;
+    position:fixed;
+    top:0px;
+    left:0px;
+    background:rgba(0,0,0,0.75);
+}
+
+/* Inner */
+.popup-inner {
+    max-width:200px;
+    width:90%;
+    padding:40px;
+    position:absolute;
+    top:50%;
+    left:50%;
+    -webkit-transform:translate(-50%, -50%);
+    transform:translate(-50%, -50%);
+    box-shadow:0px 2px 6px rgba(0,0,0,1);
+    border-radius:3px;
+    background:#fff;
+}
+
+/* Close Button */
+.popup-close {
+    width:30px;
+    height:30px;
+    padding-top:4px;
+    display:inline-block;
+    position:absolute;
+    top:0px;
+    right:0px;
+    transition:ease 0.25s all;
+    -webkit-transform:translate(50%, -50%);
+    transform:translate(50%, -50%);
+    border-radius:1000px;
+    background:rgba(0,0,0,0.8);
+    font-family:Arial, Sans-Serif;
+    font-size:20px;
+    text-align:center;
+    line-height:100%;
+    color:#fff;
+}
+
+.popup-close:hover {
+    -webkit-transform:translate(50%, -50%) rotate(180deg);
+    transform:translate(50%, -50%) rotate(180deg);
+    background:rgba(0,0,0,1);
+    text-decoration:none;
+}
+</style>
 
 </head>
 <body>
@@ -43,24 +97,44 @@
 
 		{% if request.user.is_authenticated %}
 					<a style="margin-right:-0.5rem;" href="">
-				<img style="border-radius: 50%;" class="usr-thumbnail" src="/mediadump/{{request.session.userimage}}"/>
+
+						{% for val in request.user.social_auth.values_list %}
+
+							<img style="border-radius: 50%;" class="usr-thumbnail" src="https://graph.facebook.com/{{val.4.id}}/picture?type=normal"/>
+					 	{% endfor %}
+
 			</a>
 
 
 
-			<a href="#" class="js-user-menu">Hi, {{request.user.first_name}}</a>
+			<a href="#" class="js-user-menu">&nbsp; Hi, {{request.user.first_name}} {{request.user.last_name}}</a>
 			<div class="user-menu">
 				<div class="triangle"></div>
 				<a href="{% url 'dashboard:profile' %}"><i class="icon-user"></i> profile</a>
-				<a href="{% url 'dashboard:profile' %}"><i class="icon-user"></i> Profile Image </a>
 				<a href="{% url 'dashboard:logoutUser' %}"><i class="icon-logout"></i> logout</a>
 			</div>
 		{% else %}
 		{{request.user.username}}
 
-			<a href="{% url 'dashboard:login' %}">Login/Register</a>
+
+		<a class="btn" data-popup-open="popup-1" href="#">Login</a>
 
 		{% endif %}
+
+
+<div class="popup" data-popup="popup-1">
+    <div class="popup-inner">
+
+        <a href="{% url 'social:begin' 'facebook' %}">
+			 <img style="width:220px;height:50px" src="{% static 'config/image/fb.png' %}"/>
+		</a>
+		<a href="{% url 'social:begin' 'google-oauth2' %}">
+			 <img style="width:220px;height:40px" src="{% static 'config/image/google.png' %}"/>
+		</a>
+
+        <a class="popup-close" data-popup-close="popup-1" href="#">x</a>
+    </div>
+</div>
 
 
 
@@ -115,7 +189,7 @@
 
 
 </script>
-
+<script src="{% static 'config/js/jquery-2.2.4.min.js' %}"></script>
 {% endblock header %}
 
 
@@ -129,7 +203,7 @@
 
 
 {% block footer %}
-<script src="{% static 'config/js/jquery-2.2.4.min.js' %}"></script>
+
 <script src="{% static 'config/js/typeahead.bundle.min.js' %}"></script>
 <!-- <script src="https://d2vodp2q794hrx.cloudfront.net/js/custom/browse_interviews-1.min.js"></script> -->
 <link rel="stylesheet" href="{% static 'config/css/style.css' %}">
@@ -230,6 +304,26 @@
 	<div class="copyright">&copy; 2017 CareerLama.com. All rights reserved.</div>
 
 </div>
+
+<script>
+	$(function() {
+    //----- OPEN
+    $('[data-popup-open]').on('click', function(e)  {
+        var targeted_popup_class = jQuery(this).attr('data-popup-open');
+        $('[data-popup="' + targeted_popup_class + '"]').fadeIn(350);
+
+        e.preventDefault();
+    });
+
+    //----- CLOSE
+    $('[data-popup-close]').on('click', function(e)  {
+        var targeted_popup_class = jQuery(this).attr('data-popup-close');
+        $('[data-popup="' + targeted_popup_class + '"]').fadeOut(350);
+
+        e.preventDefault();
+    });
+});
+</script>
 
 </body>
 </html>

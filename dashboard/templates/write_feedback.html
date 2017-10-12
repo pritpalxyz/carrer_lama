@@ -21,13 +21,12 @@
          background-color:rgba(165, 162, 162, 0.19);
          }
       </style>
-      <style>
-      </style>
 
 	{% endblock extra_css %}
 
 {% block content %}
-
+<link rel="stylesheet" href="{% static 'values/src/jquery-customselect.css' %}">
+<script src="{% static 'values/src/jquery-customselect.js' %}"></script>
 
 
       <section class="cover-image js-menu-shift">
@@ -61,8 +60,8 @@
 
 													<label for="searchCompany" class="section-heading interview-hide">Company Name you interviewed for?</label>
 
-													<select id="searchCompany" name="company" class="form-control">
-															 <option>Select Company</option>
+													<select id="searchCompany" name="company" class='custom-select'>
+															 <option>eg.Reliance</option>
 															{% for comp in companies %}
 
 																<option value="{{comp.id}}">{{comp.company_name}}</option>
@@ -74,7 +73,63 @@
 													<div class="input-group">
 
 														<label for="searchCompany" class="section-heading interview-hide">Job Title/Designation you interviewed for?</label>
-														<input type="text" name="job_designation" id="k" placeholder="Job Title" required value="" maxlength="150">
+														<input type="text" name="job_designation" id="k" placeholder="eg.Software engineer" required value="" maxlength="150">
+													</div>
+
+
+                                                <div class="input-group">
+
+													<label for="collegename" class="section-heading interview-hide">What's your college name?</label>
+
+													<select id="collegename" name="college_name" class='custom-select'>
+															 <option>eg.IIT Mumbai</option>
+															{% for college in allcolleges %}
+
+																<option value="{{college.id}}">{{college.college_name}}</option>
+															{% endfor %}
+														 </select>
+
+												</div>
+
+                                                 <div class="input-group">
+
+													<label for="work_expe" class="section-heading interview-hide">Work experience at the time of this interview?</label>
+
+													<select id="work_expe" name="experince" class='custom-select'>
+															 <option>Select years of Experience</option>
+                                                             <option value="0" >Fresher</option>
+                                                            <option value="0-1" >0-1 years</option>
+                                                            <option value="1-2" >1-2 years</option>
+                                                            <option value="2-3" >2-3 years</option>
+                                                            <option value="3-4" >3-4 years</option>
+                                                            <option value="4-5" >4-5 years</option>
+                                                            <option value="5-6" >5-6 years</option>
+                                                            <option value="6-7" >6-7 years</option>
+                                                            <option value="7-8" >7-8 years</option>
+                                                            <option value="8-9" >8-9 years</option>
+                                                            <option value="9-10" >9-10 years</option>
+                                                            <option value="10+" >10+ years</option>
+
+														 </select>
+
+												</div>
+
+
+                                                	<div class="input-group">
+														<label for="anonymos" class="section-heading interview-hide">Would you like to keep post anonymous?</label>
+
+
+															<br/>
+															<div style="margin-top: 0.6rem;">
+																<input id="anonymosStatyes" class="toggle toggle-left"
+																										 name="anonymosStat" value="1" type="radio">
+																				<label for="anonymosStatyes" class="" style="margin-left: 0.2rem;">Yes</label>
+																				<input id="anonymosStatno" class="toggle toggle-left"
+																				 name="anonymosStat" value="0" type="radio" checked>
+														<label for="anonymosStatno" class="" style="margin-left: 0.2rem;">No</label>
+																						</div>
+
+
 													</div>
 
 
@@ -112,5 +167,10 @@
 
 
 
-
+<script>
+    $(function() {
+  $("#searchCompany").customselect();
+  $("#collegename").customselect();
+});
+</script>
 {% endblock content %}
