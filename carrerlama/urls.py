@@ -22,6 +22,10 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     # url(r'^old/', include('home.urls',namespace='home')),
     url(r'^', include('dashboard.urls', namespace='dashboard')),
+    url('^social-auth/', include('social_django.urls', namespace='social')),
+
+
+
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 admin.site.site_header = ("Career Lama")
 admin.site.site_title = ("Career Lama")

@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'home',
     # 'dashboard',
 
+    'social_django',
+
     'django.contrib.sites',
 
 
@@ -74,6 +76,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -85,12 +89,37 @@ WSGI_APPLICATION = 'carrerlama.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql', 
+        'NAME': 'carrer_lama',
+        'USER': 'root',
+        'PASSWORD': 'laptrip0',
+        'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
+        'PORT': '3306',
     }
 }
+
+
+
+# authentication backend
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.open_id.OpenIdAuth',
+    'social_core.backends.google.GoogleOpenId',
+    'social_core.backends.google.GoogleOAuth2',
+    'social_core.backends.google.GoogleOAuth',
+    'social_core.backends.twitter.TwitterOAuth',
+    # 'social_core.backends.yahoo.YahooOpenId',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+
 
 
 # Password validation
@@ -140,4 +169,15 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
+
+# Social authentication keys
+LOGIN_REDIRECT_URL = '/done'
+
+SOCIAL_AUTH_GOOGLE_OAUTH_KEY = '158282295560-sjaaaiq15pmb2npo2qfrhcau91f6r3jb.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH_SECRET = 'RFOWoWKiLyEBB6swAHLKLeJj'
+
+
+
+
+
 
