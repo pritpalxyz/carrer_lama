@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="36dc886e-532f-4f41-8ab0-34b661727935" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/templates/write_feedback.html" afterPath="$PROJECT_DIR$/dashboard/templates/write_feedback.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/templates/write_review_all.html" afterPath="$PROJECT_DIR$/dashboard/templates/write_review_all.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/views.py" afterPath="$PROJECT_DIR$/dashboard/views.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -21,11 +21,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/dashboard/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+            <state relative-caret-position="570">
+              <caret line="83" column="49" lean-forward="true" selection-start-line="83" selection-start-column="49" selection-end-line="83" selection-end-column="49" />
               <folding>
                 <element signature="e#24#63#0" expanded="true" />
               </folding>
@@ -117,8 +117,8 @@
       <file leaf-file-name="write_feedback.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dashboard/templates/write_feedback.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="101" column="99" lean-forward="true" selection-start-line="101" selection-start-column="99" selection-end-line="101" selection-end-column="99" />
+            <state relative-caret-position="434">
+              <caret line="142" column="0" lean-forward="true" selection-start-line="142" selection-start-column="0" selection-end-line="142" selection-end-column="0" />
               <folding>
                 <element signature="n#style#0;n#label#1;n#div#0;n#div#4;n#div#0;n#form#0;n#div#1;n#section#0;n#div#0;n#section#0;n#section#1;n#!!top" expanded="true" />
               </folding>
@@ -126,7 +126,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="write_review_all.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="write_review_all.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dashboard/templates/write_review_all.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-190">
@@ -215,13 +215,13 @@
         <option value="$PROJECT_DIR$/home/admin.py" />
         <option value="$PROJECT_DIR$/dashboard/urls.py" />
         <option value="$PROJECT_DIR$/dashboard/templates/allcompanies.html" />
-        <option value="$PROJECT_DIR$/dashboard/views.py" />
         <option value="$PROJECT_DIR$/templates/base_new.html" />
         <option value="$PROJECT_DIR$/dashboard/templates/index.html" />
         <option value="$PROJECT_DIR$/dashboard/templates/login.html" />
         <option value="$PROJECT_DIR$/carrerlama/settings.py" />
-        <option value="$PROJECT_DIR$/dashboard/templates/write_feedback.html" />
         <option value="$PROJECT_DIR$/dashboard/templates/write_review_all.html" />
+        <option value="$PROJECT_DIR$/dashboard/templates/write_feedback.html" />
+        <option value="$PROJECT_DIR$/dashboard/views.py" />
       </list>
     </option>
   </component>
@@ -889,16 +889,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dashboard/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
-          <folding>
-            <element signature="e#24#63#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dashboard/templates/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="975">
@@ -948,21 +938,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/dashboard/templates/write_review_all.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-190">
+          <caret line="155" column="65" lean-forward="true" selection-start-line="155" selection-start-column="65" selection-end-line="155" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/dashboard/templates/write_feedback.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="101" column="99" lean-forward="true" selection-start-line="101" selection-start-column="99" selection-end-line="101" selection-end-column="99" />
+        <state relative-caret-position="434">
+          <caret line="142" column="0" lean-forward="true" selection-start-line="142" selection-start-column="0" selection-end-line="142" selection-end-column="0" />
           <folding>
             <element signature="n#style#0;n#label#1;n#div#0;n#div#4;n#div#0;n#form#0;n#div#1;n#section#0;n#div#0;n#section#0;n#section#1;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dashboard/templates/write_review_all.html">
+    <entry file="file://$PROJECT_DIR$/dashboard/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-190">
-          <caret line="155" column="65" lean-forward="true" selection-start-line="155" selection-start-column="65" selection-end-line="155" selection-end-column="65" />
-          <folding />
+        <state relative-caret-position="570">
+          <caret line="83" column="49" lean-forward="true" selection-start-line="83" selection-start-column="49" selection-end-line="83" selection-end-column="49" />
+          <folding>
+            <element signature="e#24#63#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -63,6 +63,9 @@ class writeAReviewView(TemplateView):
 
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            if request.user.is_superuser:
+                return HttpResponseRedirect(reverse('admin:index'))
         return super(self.__class__, self).dispatch(request, *args, **kwargs)
 
 
