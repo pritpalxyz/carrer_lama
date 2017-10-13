@@ -171,7 +171,7 @@ STATICFILES_DIRS = [
 ]
 
 # Social authentication keys
-LOGIN_REDIRECT_URL = 'http://127.0.0.1:8000'
+LOGIN_REDIRECT_URL = "http://139.59.94.59/"
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '158282295560-sjaaaiq15pmb2npo2qfrhcau91f6r3jb.apps.googleusercontent.com'
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'RFOWoWKiLyEBB6swAHLKLeJj'
