@@ -78,7 +78,7 @@
 														<label for="qualification" class="section-heading interview-hide">What is the highest qualification at the time of interview?</label>
 
 															<br/>
-														<select id="qualification"  name="qualification"  class='custom-select'>
+														<select id="qualification"  name="qualification"  class='custom-select' required>
 															 <option>Select Qualification </option>
                                                                 {% for quali in allQualifications %}
                                                                         <option value="{{quali.id}}">{{quali.qualification_name}}</option>
@@ -91,7 +91,7 @@
 														<label for="appearmonth" class="section-heading interview-hide">When did you appear for the process?</label>
 
 															<br/>
-														<select id="appearmonth" name="appearmonth" class="form-control">
+														<select id="appearmonth" name="appearmonth" class="form-control" required>
 															 <option value="0" selected>Select Month </option>
 
                                                               <option value="January" >January</option>
@@ -108,7 +108,7 @@
                                                               <option value="December" >December</option>
 
 														 </select>
-														 <select name="appearyear" class="workExperience">
+														 <select name="appearyear" class="workExperience" required>
  															 <option value="0" selected>Select Year </option>
  															    <option value="2017">2017</option>
                                                                   <option value="2016">2016</option>
@@ -139,14 +139,14 @@
 														<label for="poi" class="section-heading interview-hide">Describe the process of interview?</label>
 
 															<br/>
-													    <textarea name="interviewProcess" id="poi" placeholder="Eg. no of rounds, Shortlisting Criteria, Written test" required value=""  rows="5"></textarea>
+													    <textarea name="interviewProcess" id="poi" placeholder="Eg. no of rounds, Shortlisting Criteria, Written test" required value=""  rows="5" required></textarea>
 
 
 													</div>
 													<div class="input-group">
 
 														<label  class="section-heading interview-hide">Anything else you want to mention about the interview?</label>
-                                                         <textarea name="anything_else"  placeholder="Tips or any specific prepraton required for similar job profile" required value=""  rows="5"></textarea>
+                                                         <textarea name="anything_else"  placeholder="Tips or any specific prepraton required for similar job profile" required value=""  rows="5" required></textarea>
 
 
 													</div>
