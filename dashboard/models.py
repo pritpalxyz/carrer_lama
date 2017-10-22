@@ -155,6 +155,7 @@ class company_interviews(models.Model):
 		verbose_name_plural = _("All Interviews")
 
 
+
 # OLD MODEL not in use
 class interviews(models.Model):
 
@@ -201,5 +202,25 @@ class interviews(models.Model):
 class questionsAsked(models.Model):
 	interview           = models.ForeignKey(interviews)
 	questions           = models.TextField()
+
+
+
+class socialMediaLinks(models.Model):
+	SOCIAL_MEDIA_LINKS_STAT = (
+		('icon-facebook','Facebook'),
+		('icon-twitter','Twitter'),
+		('icon-linkedin','Linkedin'),
+		('icon-google-plus','Google'),
+		('icon-youtube','YouTube'),
+	)
+	social_link = models.TextField(default='')
+	social_link_type = models.CharField(max_length=240,choices=SOCIAL_MEDIA_LINKS_STAT,unique=True)
+
+	def __str__(self):
+		return self.social_link
+
+	class Meta:
+		verbose_name = _("Social Media Links")
+		verbose_name_plural = _("Social Media Links")
 
 

@@ -55,8 +55,11 @@
 
 
                         <a href="{% url 'social:begin' 'facebook' %}">
-                            <img style="width:250px" src="{% static 'config/image/facebook_login.png' %}"/></a>
-                     <br/>  <a href="{% url 'social:begin' 'google-oauth2' %}"> <img style="width:250px" src="{% static 'config/image/google.png' %}"/></a>
+                            <img  src="{% static 'config/image/facebook.png' %}"/></a>
+                   <a href="{% url 'social:begin' 'google-oauth2' %}"> <img src="{% static 'config/image/googl.png' %}"/></a>
+
+                   <a href="{% url 'social:begin' 'linkedin-oauth2' %}"> <img src="{% static 'config/image/linkedin.png' %}"/></a>
+
 
 
                       <!--<form method="post"  action="{% url 'dashboard:login_check' %}" id="ContributeIntroForm" name="ContributeIntroForm">-->

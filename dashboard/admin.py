@@ -8,6 +8,15 @@ from .models import *
 
 
 
+class allInterviews(admin.ModelAdmin):
+    list_display = ('submittedBy', 'company','job_title_designation','submittedDate')
+    search_fields = ['job_title_designation']
+    date_hierarchy = 'submittedDate'
+
+
+
+
 admin.site.register(all_colleges)
 admin.site.register(qualifications)
-admin.site.register(company_interviews)
+admin.site.register(company_interviews,allInterviews)
+admin.site.register(socialMediaLinks)

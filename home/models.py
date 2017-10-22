@@ -65,7 +65,7 @@ class companies(models.Model):
 	state           = models.ForeignKey(States)
 	startedDate     = models.DateField()
 	category        = models.ForeignKey(category)
-	ratings         = models.CharField(max_length=100,help_text="This Value will change basis on user reviews")
+	# ratings         = models.CharField(max_length=100,help_text="This Value will change basis on user reviews")
 	company_description = models.TextField()
 
 

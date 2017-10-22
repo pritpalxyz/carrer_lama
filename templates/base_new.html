@@ -41,8 +41,8 @@
 
 /* Inner */
 .popup-inner {
-    max-width:200px;
-    width:90%;
+    max-width:280px;
+    width:100%;
     padding:40px;
     position:absolute;
     top:50%;
@@ -124,13 +124,21 @@
 
 <div class="popup" data-popup="popup-1">
     <div class="popup-inner">
+		<div align="center">
+						<h4 style="color:grey">SIGNUP/LOGIN</h4>
+						<h5 style="color:grey">1-Step Login | Get unlimited access!</h5>
+		</div>
 
         <a href="{% url 'social:begin' 'facebook' %}">
-			 <img style="width:220px;height:50px" src="{% static 'config/image/fb.png' %}"/>
+			 <img  src="{% static 'config/image/facebook.png' %}"/>
 		</a>
 		<a href="{% url 'social:begin' 'google-oauth2' %}">
-			 <img style="width:220px;height:40px" src="{% static 'config/image/google.png' %}"/>
+			 <img  src="{% static 'config/image/googl.png' %}"/>
 		</a>
+		<a href="{% url 'social:begin' 'linkedin-oauth2' %}">
+			 <img  src="{% static 'config/image/linkedin.png' %}"/>
+		</a>
+
 
         <a class="popup-close" data-popup-close="popup-1" href="#">x</a>
     </div>
@@ -149,13 +157,10 @@
 
 <header class="main-menu-mobile">
 	<div>
-		<a href="" taget="_blank">Home</a>
+		<a href="/" taget="_blank">Home</a>
 		<a href="" >Interviews</a>
-		<a href=""  >Companies</a>
-		<a href=""  >Company Reviews</a>
-		<a href=""  >Write A Review</a>
-		<a href="">Blog</a>
-		<a href=""  >Tests</a>
+		<a href="{% url 'dashboard:all_list_companies' %}"  >Companies</a>
+		<a href="{% url 'dashboard:writeAReview' %}"  >Write A Review</a>
 	</div>
 </header>
 <script>
@@ -248,24 +253,23 @@
 	<div class="footer-social-media">
 		<div class="line-social"><hr/></div>
 		<div id="social-icons">
-			<a href="" target="_blank" ><div id="fb"><i class="icon-facebook"></i></div></a>
-			<a href="" target="_blank" ><div id="tw"><i class="icon-twitter"></i></div></a>
-			<a href="" target="_blank"><div id="ln"><i class="icon-linkedin"></i></div></a>
-			<a href="" target="_blank"><div id="gp"><i class="icon-google-plus"></i></div></a>
-			<a href="" target="_blank"><div id="yt"><i class="icon-youtube"></i></div></a>
+
+			{% for link in allSocialLinks %}
+				<a href="{{link.social_link}}" target="_blank" ><div id="fb"><i class="{{link.social_link_type}}"></i></div></a>
+			{% endfor %}
 		</div>
 		<div class="line-social"><hr/></div>
 	</div>
-	<div class="footer-report-issues" >Bugs, Hugs, Suggestions? Ping Us!</div>
-	<div class="contact-form">
-		<form method="post" id="contact-us-form">
-			<input class="email" type="email" name="email" placeholder="Please enter your email" />
-        	<textarea name="message" id=""  rows="5" placeholder="Type here. "></textarea>
-        	<input type="submit" value="SUBMIT">
-		</form>
+	<!--<div class="footer-report-issues" >Bugs, Hugs, Suggestions? Ping Us!</div>-->
+	<!--<div class="contact-form">-->
+		<!--<form method="post" id="contact-us-form">-->
+			<!--<input class="email" type="email" name="email" placeholder="Please enter your email" />-->
+        	<!--<textarea name="message" id=""  rows="5" placeholder="Type here. "></textarea>-->
+        	<!--<input type="submit" value="SUBMIT">-->
+		<!--</form>-->
 
 
-	</div>
+	<!--</div>-->
 	<div class="footer-links" style="margin-bottom: 2rem;margin-top: 2rem;">
 		<ul>
 			<li><a href="">About Us .</a></li>

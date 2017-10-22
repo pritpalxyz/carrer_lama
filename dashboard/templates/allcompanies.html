@@ -59,6 +59,15 @@
               <section class="companies-block">
 
 
+                                {% if result_count == 0 %}
+                                        <div align="center">
+                                                <h2>No Result Found :(</h2>
+
+                                        </div>
+
+                                {% endif %}
+
+
                                 {% for comp in companies %}
                                         <a href="{% url 'dashboard:company' comp.id %}">
                                         <div class="company-tile">

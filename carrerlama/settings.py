@@ -33,6 +33,9 @@ ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'social_django',
+    'material.theme.indigo',
+    'material',
+    'material.admin',
 
     'dashboard.apps.DashboardConfig',
     'django.contrib.admin',
@@ -111,13 +114,6 @@ DATABASES = {
 
 
 
-# authentication backend
-AUTHENTICATION_BACKENDS = (
-    'social_core.backends.google.GoogleOAuth2',
-    'social_core.backends.facebook.FacebookOAuth2',
-    'social_core.backends.linkedin.LinkedinOAuth2',
-    'django.contrib.auth.backends.ModelBackend',
-)
 
 
 
@@ -170,8 +166,19 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
 
+# authentication backend
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.google.GoogleOAuth2',
+    'social_core.backends.facebook.FacebookOAuth2',
+    'social_core.backends.linkedin.LinkedinOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+
+
 # Social authentication keys
 LOGIN_REDIRECT_URL = "http://139.59.94.59/"
+# LOGIN_REDIRECT_URL  = "http://127.0.0.1:8000"
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '158282295560-sjaaaiq15pmb2npo2qfrhcau91f6r3jb.apps.googleusercontent.com'
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'RFOWoWKiLyEBB6swAHLKLeJj'
