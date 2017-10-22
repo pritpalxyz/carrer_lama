@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="36dc886e-532f-4f41-8ab0-34b661727935" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/carrerlama/settings.py" afterPath="$PROJECT_DIR$/carrerlama/settings.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dashboard/views.py" afterPath="$PROJECT_DIR$/dashboard/views.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -21,11 +20,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/dashboard/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="41" column="20" lean-forward="false" selection-start-line="41" selection-start-column="20" selection-end-line="41" selection-end-column="20" />
+            <state relative-caret-position="11">
+              <caret line="382" column="94" lean-forward="false" selection-start-line="382" selection-start-column="94" selection-end-line="382" selection-end-column="94" />
               <folding>
                 <element signature="e#24#63#0" expanded="true" />
               </folding>
@@ -80,7 +79,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/carrerlama/settings.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="270">
@@ -229,8 +228,8 @@
         <option value="$PROJECT_DIR$/dashboard/models.py" />
         <option value="$PROJECT_DIR$/dashboard/admin.py" />
         <option value="$PROJECT_DIR$/dashboard/templates/company_page.html" />
-        <option value="$PROJECT_DIR$/dashboard/views.py" />
         <option value="$PROJECT_DIR$/carrerlama/settings.py" />
+        <option value="$PROJECT_DIR$/dashboard/views.py" />
       </list>
     </option>
   </component>
@@ -907,21 +906,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dashboard/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="41" column="20" lean-forward="false" selection-start-line="41" selection-start-column="20" selection-end-line="41" selection-end-column="20" />
-          <folding>
-            <element signature="e#24#63#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/carrerlama/settings.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
           <caret line="181" column="0" lean-forward="true" selection-start-line="181" selection-start-column="0" selection-end-line="181" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dashboard/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="11">
+          <caret line="382" column="94" lean-forward="false" selection-start-line="382" selection-start-column="94" selection-end-line="382" selection-end-column="94" />
+          <folding>
+            <element signature="e#24#63#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

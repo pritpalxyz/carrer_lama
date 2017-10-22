@@ -124,9 +124,13 @@ class writeAReviewView(TemplateView):
 			if self.request.user.is_superuser:pass
 			else:
 				socialProvider = self.request.user.social_auth.get().provider
-				if socialProvider == 'linkedin-oauth2' or 'google-oauth2':
+				if socialProvider == 'linkedin-oauth2':
 					userUpdatedInsta = userinformation.objects.get(user=self.request.user)
 					context['linkedin_profile_url'] = userUpdatedInsta.alternateUserprofileurl
+				if socialProvider  == 'google-oauth2':
+					userUpdatedInsta = userinformation.objects.get(user=self.request.user)
+					context['linkedin_profile_url'] = userUpdatedInsta.alternateUserprofileurl
+
 
 
 		context['allSocialLinks'] = socialMediaLinks.objects.all()
@@ -191,9 +195,13 @@ class thanks_pageView(TemplateView):
 			if self.request.user.is_superuser:pass
 			else:
 				socialProvider = self.request.user.social_auth.get().provider
-				if socialProvider == 'linkedin-oauth2' or 'google-oauth2':
+				if socialProvider == 'linkedin-oauth2':
 					userUpdatedInsta = userinformation.objects.get(user=self.request.user)
 					context['linkedin_profile_url'] = userUpdatedInsta.alternateUserprofileurl
+				if socialProvider  == 'google-oauth2':
+					userUpdatedInsta = userinformation.objects.get(user=self.request.user)
+					context['linkedin_profile_url'] = userUpdatedInsta.alternateUserprofileurl
+
 		context['allSocialLinks'] = socialMediaLinks.objects.all()
 
 		return context
@@ -210,7 +218,10 @@ class companyView(TemplateView):
 			if self.request.user.is_superuser:pass
 			else:
 				socialProvider = self.request.user.social_auth.get().provider
-				if socialProvider == 'linkedin-oauth2' or 'google-oauth2':
+				if socialProvider == 'linkedin-oauth2':
+					userUpdatedInsta = userinformation.objects.get(user=self.request.user)
+					context['linkedin_profile_url'] = userUpdatedInsta.alternateUserprofileurl
+				if socialProvider  == 'google-oauth2':
 					userUpdatedInsta = userinformation.objects.get(user=self.request.user)
 					context['linkedin_profile_url'] = userUpdatedInsta.alternateUserprofileurl
 		context['allSocialLinks'] = socialMediaLinks.objects.all()
@@ -287,7 +298,10 @@ class loginView(TemplateView):
 			if self.request.user.is_superuser:pass
 			else:
 				socialProvider = self.request.user.social_auth.get().provider
-				if socialProvider == 'linkedin-oauth2' or 'google-oauth2':
+				if socialProvider == 'linkedin-oauth2':
+					userUpdatedInsta = userinformation.objects.get(user=self.request.user)
+					context['linkedin_profile_url'] = userUpdatedInsta.alternateUserprofileurl
+				if socialProvider  == 'google-oauth2':
 					userUpdatedInsta = userinformation.objects.get(user=self.request.user)
 					context['linkedin_profile_url'] = userUpdatedInsta.alternateUserprofileurl
 		context['allSocialLinks'] = socialMediaLinks.objects.all()
@@ -306,7 +320,10 @@ class registerView(TemplateView):
 			if self.request.user.is_superuser:pass
 			else:
 				socialProvider = self.request.user.social_auth.get().provider
-				if socialProvider == 'linkedin-oauth2' or 'google-oauth2':
+				if socialProvider == 'linkedin-oauth2':
+					userUpdatedInsta = userinformation.objects.get(user=self.request.user)
+					context['linkedin_profile_url'] = userUpdatedInsta.alternateUserprofileurl
+				if socialProvider  == 'google-oauth2':
 					userUpdatedInsta = userinformation.objects.get(user=self.request.user)
 					context['linkedin_profile_url'] = userUpdatedInsta.alternateUserprofileurl
 		context['allSocialLinks'] = socialMediaLinks.objects.all()
@@ -329,7 +346,10 @@ class profileView(TemplateView):
 			if self.request.user.is_superuser:pass
 			else:
 				socialProvider = self.request.user.social_auth.get().provider
-				if socialProvider == 'linkedin-oauth2' or 'google-oauth2':
+				if socialProvider == 'linkedin-oauth2':
+					userUpdatedInsta = userinformation.objects.get(user=self.request.user)
+					context['linkedin_profile_url'] = userUpdatedInsta.alternateUserprofileurl
+				if socialProvider  == 'google-oauth2':
 					userUpdatedInsta = userinformation.objects.get(user=self.request.user)
 					context['linkedin_profile_url'] = userUpdatedInsta.alternateUserprofileurl
 		context['allSocialLinks'] = socialMediaLinks.objects.all()
@@ -355,7 +375,10 @@ class all_list_companiesView(TemplateView):
 			if self.request.user.is_superuser:pass
 			else:
 				socialProvider = self.request.user.social_auth.get().provider
-				if socialProvider == 'linkedin-oauth2' or 'google-oauth2':
+				if socialProvider == 'linkedin-oauth2':
+					userUpdatedInsta = userinformation.objects.get(user=self.request.user)
+					context['linkedin_profile_url'] = userUpdatedInsta.alternateUserprofileurl
+				if socialProvider  == 'google-oauth2':
 					userUpdatedInsta = userinformation.objects.get(user=self.request.user)
 					context['linkedin_profile_url'] = userUpdatedInsta.alternateUserprofileurl
 		context['allSocialLinks'] = socialMediaLinks.objects.all()
