@@ -63,11 +63,13 @@ class indexView(TemplateView):
 		if self.request.user.is_authenticated:
 			if self.request.user.is_superuser:pass
 			else:
-				socialProvider = self.request.user.social_auth.get().provider
-				if socialProvider == 'linkedin-oauth2' or 'google-oauth2':
-					userUpdatedInsta = userinformation.objects.get(user=self.request.user)
-					context['linkedin_profile_url'] = userUpdatedInsta.alternateUserprofileurl
-
+				try:
+					socialProvider = self.request.user.social_auth.get().provider
+					if socialProvider == 'linkedin-oauth2' or 'google-oauth2':
+						userUpdatedInsta = userinformation.objects.get(user=self.request.user)
+						context['linkedin_profile_url'] = userUpdatedInsta.alternateUserprofileurl
+				except:
+					pass
 
 
 
