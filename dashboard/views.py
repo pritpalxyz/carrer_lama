@@ -38,7 +38,8 @@ class indexView(TemplateView):
 		if self.request.user.is_authenticated():
 			if self.request.user.is_superuser:pass
 			else:
-				try:userUpdatedInsta  = userinformation.objects.get(user=self.request.user)
+				try:
+					userUpdatedInsta  = userinformation.objects.get(user=self.request.user)
 				except:
 					socialProvider = self.request.user.social_auth.get().provider
 					if socialProvider  == 'linkedin-oauth2':
