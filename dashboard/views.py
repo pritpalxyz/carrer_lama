@@ -162,7 +162,10 @@ class writeReviewRest(TemplateView):
 			if self.request.user.is_superuser:pass
 			else:
 				socialProvider = self.request.user.social_auth.get().provider
-				if socialProvider == 'linkedin-oauth2' or 'google-oauth2':
+				if socialProvider == 'linkedin-oauth2':
+					userUpdatedInsta = userinformation.objects.get(user=self.request.user)
+					context['linkedin_profile_url'] = userUpdatedInsta.alternateUserprofileurl
+				if socialProvider  == 'google-oauth2':
 					userUpdatedInsta = userinformation.objects.get(user=self.request.user)
 					context['linkedin_profile_url'] = userUpdatedInsta.alternateUserprofileurl
 		context['allSocialLinks'] = socialMediaLinks.objects.all()
@@ -255,8 +258,11 @@ class companyView(TemplateView):
 				profile_image = ""
 			else:
 				user_auth_type = inter.submittedBy.social_auth.get().provider
-				if user_auth_type == 'linkedin-oauth2' or 'google-oauth2':
+				if user_auth_type == 'linkedin-oauth2':
 					userinfodeep  = userinformation.objects.get(user=inter.submittedBy)
+					profile_image = userinfodeep.alternateUserprofileurl
+				elif user_auth_type == 'google-oauth2':
+					userinfodeep = userinformation.objects.get(user=inter.submittedBy)
 					profile_image = userinfodeep.alternateUserprofileurl
 				else:
 					profile_image = "https://graph.facebook.com/{0}/picture?type=normal".format(inter.submittedBy.social_auth.get().uid)
