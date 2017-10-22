@@ -188,17 +188,21 @@
 
 
                            </div>
-                           <div class="review_quality">
+                           {% if request.user.is_authenticated %}
+                            <div class="review_quality">
+
                               <div style="display: inline-block;">
-                                 <button class="helpful" resourcetype="InterviewStory" buttonid="">
+                                 <button class="helpful" resourcetype="InterviewStory" onclick="hitbutton({{inter.main_data.pk}});"  id="helpful{{inter.main_data.pk}}">
                                  Helpful
-                                 <span>
-                                 (0)
+                                 <span id="count{{inter.main_data.pk}}">
+                                 ({{inter.main_data.helpful_count}})
                                  </span></button>
 
                               </div>
 
                            </div>
+                            {% endif %}
+
                            <hr class="hr_margin">
                         </article>
 
@@ -244,5 +248,12 @@
 
          </div>
       </section>
+
+
+
+<script>
+function hitbutton(value){var hiturl = "/make-helpful/" + value;var hash = "#" + "count" + value;var butt = "#" + "helpful" +value;
+$.ajax({url:hiturl , success: function(result){$(hash).html(result); $(butt).prop("disabled", true); }});}
+</script>
 
 {% endblock content %}

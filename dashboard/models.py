@@ -28,6 +28,7 @@ def get_profile_image(instance,filename):
 class userinformation(models.Model):
 	user                = models.OneToOneField(User)
 	userProfileImage    = models.ImageField(upload_to=get_profile_image,default='https://eliaslealblog.files.wordpress.com/2014/03/user-200.png')
+	alternateUserprofileurl  = models.TextField(default='')
 	current_job_profile     = models.CharField(max_length=500,default='')
 	current_location        = models.CharField(max_length=500,default='')
 
@@ -146,6 +147,7 @@ class company_interviews(models.Model):
 
 	show_stat 					= models.CharField(max_length=100,choices=SHOW_STAT_VALS,verbose_name='SHOW/HIDE',default='hide')
 	submittedDate = models.DateField(null=True, auto_now_add=True)
+	helpful_count 			= models.CharField(max_length=244,default='0')
 
 	def __str__(self):
 		return self.company.company_name + " | " + self.submittedBy.username

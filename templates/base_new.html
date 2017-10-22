@@ -97,11 +97,13 @@
 
 		{% if request.user.is_authenticated %}
 					<a style="margin-right:-0.5rem;" href="">
-
-						{% for val in request.user.social_auth.values_list %}
-
-							<img style="border-radius: 50%;" class="usr-thumbnail" src="https://graph.facebook.com/{{val.4.id}}/picture?type=normal"/>
-					 	{% endfor %}
+						{% if linkedin_profile_url %}
+								<img style="border-radius: 50%;" class="usr-thumbnail" src="{{linkedin_profile_url}}"/>
+						{% else %}
+								{% for val in request.user.social_auth.values_list %}
+									<img style="border-radius: 50%;" class="usr-thumbnail" src="https://graph.facebook.com/{{val.4.id}}/picture?type=normal"/>
+								{% endfor %}
+						{% endif %}
 
 			</a>
 
@@ -161,6 +163,7 @@
 		<a href="" >Interviews</a>
 		<a href="{% url 'dashboard:all_list_companies' %}"  >Companies</a>
 		<a href="{% url 'dashboard:writeAReview' %}"  >Write A Review</a>
+		<a href="{% url 'dashboard:login' %}"  >Login</a>
 	</div>
 </header>
 <script>
@@ -274,9 +277,9 @@
 		<ul>
 			<li><a href="">About Us .</a></li>
 			<li><a href="">Join us .</a></li>
-			<li><a href="">Contribute .</a></li>
-			<li><a href="">Salary Calculator .</a></li>
-			<li><a href="">Blog .</a></li>
+			<li><a href="{% url 'dashboard:all_list_companies' %}">Company Reviews</a></li>
+			<li><a href="{% url 'dashboard:writeAReview' %}">Write a review</a></li>
+
 			<li><a href="">Our Partners .</a></li>
 		</ul>
 	</div>
@@ -296,12 +299,11 @@
 	<div class="footer-report-issues">Bugs, Hugs, Suggestions? Ping Us!</div>
 
 	<ul>
-		<li><a href="">Browse interviews</a></li>
-		<li><a href="">Browse companies</a></li>
-		<li><a href="">Write a review</a></li>
-		<li><a href="">Blog</a></li>
-		<li><a href="">Company Reviews</a></li>
-		<li><a href="">Salary calculator</a></li>
+
+		<li><a href="{% url 'dashboard:all_list_companies' %}">Browse companies</a></li>
+		<li><a href="{% url 'dashboard:writeAReview' %}">Write a review</a></li>
+		<li><a href="{% url 'dashboard:all_list_companies' %}">Company Reviews</a></li>
+
 	</ul>
 
 	<a class="white-title" href="" target="_blank" >Disclaimer</a> &nbsp;|&nbsp; <a class="white-title" href="" target="_blank" >Privacy policy</a>

@@ -60,7 +60,7 @@
 
 													<label for="searchCompany" class="section-heading interview-hide">Company Name you interviewed for?</label>
 
-													<select id="searchCompany" name="company" class='custom-select' required>
+													<select id="searchCompany" name="company" class='custom-select required'>
 															 <option>eg.Reliance</option>
 															{% for comp in companies %}
 
@@ -72,8 +72,8 @@
 
 													<div class="input-group">
 
-														<label for="searchCompany" class="section-heading interview-hide">Job Title/Designation you interviewed for?</label>
-														<input type="text" name="job_designation" id="k" placeholder="eg.Software engineer" required value="" maxlength="150">
+														<label for="designation" class="section-heading interview-hide">Job Title/Designation you interviewed for?</label>
+														<input type="text" name="job_designation" id="designation" placeholder="eg.Software engineer" required value="" maxlength="150">
 													</div>
 
 
@@ -131,6 +131,20 @@
 
 
 													</div>
+                                                    {% if form_errors %}
+                                                    <div class="input-group">
+
+                                                            <div align="left" style="color:red">
+                                                                <h4>Following Fields are required to submit form </h4>
+
+                                                                      {% for err in form_errors %}
+                                                                         * {{err}}</br>
+                                                                    {% endfor %}
+
+
+                                                            </div>
+                                                    </div>
+                                                    {% endif %}
 
 
 
@@ -139,6 +153,7 @@
 
 													<div class="input-group">
 															<button class="btn accent" name="next">Next <i class="icon-right-arrow"></i></button>
+
 													</div>
 
                      </form>

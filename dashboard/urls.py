@@ -36,6 +36,9 @@ urlpatterns = [
     url(r'delete-sub-process/$',views.deleteSubProcess,name='deleteSubProcess'),
 
 
+    url(r'make-helpful/(?P<pk>[0-9a-z-]+)/$',views.make_helpful,name='helpful'),
+
+
 
     url(r'all-companies/$',views.all_list_companies,name='all_list_companies'),
 

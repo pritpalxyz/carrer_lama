@@ -193,6 +193,20 @@
 
 
 													</div>
+                                                {% if form_errors %}
+                                                    <div class="input-group">
+
+                                                            <div align="left" style="color:red">
+                                                                <h4>Following Fields are required to submit form </h4>
+
+                                                                      {% for err in form_errors %}
+                                                                         * {{err}}</br>
+                                                                    {% endfor %}
+
+
+                                                            </div>
+                                                    </div>
+                                                    {% endif %}
 
 													<div class="input-group">
                                                             <input type="submit" class="btn accent" value="Submit"/>

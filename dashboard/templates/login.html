@@ -53,41 +53,18 @@
                   </div>
                   <div class="content__center">
 
+                    <div align="center">
+                                <a href="{% url 'social:begin' 'facebook' %}">
+                                    <img  src="{% static 'config/image/facebook.png' %}"/></a>
+                           <a href="{% url 'social:begin' 'google-oauth2' %}"> <img src="{% static 'config/image/googl.png' %}"/></a>
 
-                        <a href="{% url 'social:begin' 'facebook' %}">
-                            <img  src="{% static 'config/image/facebook.png' %}"/></a>
-                   <a href="{% url 'social:begin' 'google-oauth2' %}"> <img src="{% static 'config/image/googl.png' %}"/></a>
-
-                   <a href="{% url 'social:begin' 'linkedin-oauth2' %}"> <img src="{% static 'config/image/linkedin.png' %}"/></a>
-
-
-
-                      <!--<form method="post"  action="{% url 'dashboard:login_check' %}" id="ContributeIntroForm" name="ContributeIntroForm">-->
-                         <!--{% csrf_token %}-->
+                           <a href="{% url 'social:begin' 'linkedin-oauth2' %}"> <img src="{% static 'config/image/linkedin.png' %}"/></a>
+                    </div>
 
 
 
-                                                    <!--<div class="input-group">-->
-														<!--<label for="email" class="section-heading interview-hide">Enter your email</label>-->
-														<!--<input type="email" name="email" id="email" placeholder="Enter your email" required value="" maxlength="150">-->
-													<!--</div>-->
-                                                     <!--<div class="input-group">-->
-														<!--<label for="k" class="section-heading interview-hide">Enter your password</label>-->
-													<!--<input type="password" name="password" id="k" placeholder="Password" required value="" maxlength="150">-->
-													<!--</div>-->
-                                                    <!--<div class="input-group">-->
-
-													    <!--<button class="btn accent" name="Login">Login <i class="icon-right-arrow"></i></button>-->
-
-                                                        <!--<a class="btn" href="{% url 'dashboard:register' %}">Register</a>-->
-                                                           <!--{% if msg %}-->
-                                                            <!--<font color="red">{{msg}}</font>-->
-                                                        <!--{% endif %}-->
-
-                                                    <!--</div>-->
 
 
-                     <!--</form>-->
                   </div>
                </section>
 
